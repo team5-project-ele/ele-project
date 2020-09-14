@@ -1,12 +1,18 @@
 <template>
+<<<<<<< HEAD
   <div id="Container">
     <header class="header">
         
     </header>
+=======
+  <div id="app">
+    <GoldCoin></GoldCoin>
+>>>>>>> 813a9888c3b38e1b94938dc52d371321713b09f8
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 export default {
   name: "App",
   data() {
@@ -16,11 +22,19 @@ export default {
   },
   mounted() {
     
+=======
+import GoldCoin from './pages/GoldCoin'
+export default {
+  name: 'App',
+  components: {
+    GoldCoin
+>>>>>>> 813a9888c3b38e1b94938dc52d371321713b09f8
   }
 }
 </script>
 
 <style lang="stylus">
+<<<<<<< HEAD
   #Container
     width 100%
     height 100%
@@ -31,3 +45,11 @@ export default {
 </style>>
 
 
+=======
+  #app
+    width 100%
+    height 400px
+    background #ededed
+  
+</style>
+>>>>>>> 813a9888c3b38e1b94938dc52d371321713b09f8
