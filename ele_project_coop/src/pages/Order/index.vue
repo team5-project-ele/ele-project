@@ -40,11 +40,14 @@ export default {
 </script>
 
 <style lang="stylus">
-.orderList
+.orderContainer
   width 100%
   height 100%
-  background-color rgb(245, 245, 245)
-  .orderCard
-    height 310px
-    background-color pink
+  .orderList
+    width 100%
+    height 100%
+    background-color rgb(245, 245, 245)
+    .orderCard
+      height 310px
+      background-color pink
 </style>
