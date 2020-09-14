@@ -49,11 +49,11 @@ export default {
   bottom 0
   left 0
   width 100%
-  height 120px
+  height 100px
   display flex
   justify-content space-around
   background-color #fff
-  border-top 1px solid #8e8e93
+  border-top 2px solid #eee
   .tabBar
     flex 1
     display flex
@@ -64,7 +64,7 @@ export default {
     &.active
       color #0089dc
     .iconfont
-      font-size 50px
+      font-size 45px
     span
-      font-size 30px
+      font-size 20px
 </style>
