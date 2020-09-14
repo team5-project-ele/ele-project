@@ -1,23 +1,18 @@
 <template>
   <div id="app">
-    <GoldCoin></GoldCoin>
+    <router-view></router-view>
+    <FooterBar />
   </div>
 </template>
 
 <script>
-import GoldCoin from './pages/GoldCoin'
+import FooterBar from './components/FooterBar'
 export default {
   name: 'App',
   components: {
-    GoldCoin
+    FooterBar
   }
 }
 </script>
 
-<style lang="stylus">
-  #app
-    width 100%
-    height 400px
-    background #ededed
-  
-</style>
+<style lang="stylus"></style>
