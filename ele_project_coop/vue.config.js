@@ -13,4 +13,14 @@ module.exports = {
       }
     }
   },
+  lintOnSave: false, // 是否开启esline语法检查
+  devServer: {
+    proxy: {
+      '/': {
+        target: 'http://localhost:5000',
+        ws: true,
+        changeOrigin: true
+      }
+    }
+  }
 }
