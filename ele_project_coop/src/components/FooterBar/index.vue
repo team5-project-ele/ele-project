@@ -1,5 +1,6 @@
 <template>
-  <div id="footerContainer">
+  <div id="footerContainer"
+       v-if="!$route.meta.isHideFooter">
     <div class="tabBar"
          @click="toPage('/home')"
          :class="{active:$route.path === '/home'}">

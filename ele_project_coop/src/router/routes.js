@@ -18,7 +18,10 @@ export default [
   },
   {
     path: '/order/detail',
-    component: Detail
+    component: Detail,
+    meta: {
+      isHideFooter: true // 是否隐藏底部
+    }
   },
   {
     path: '/personal',
