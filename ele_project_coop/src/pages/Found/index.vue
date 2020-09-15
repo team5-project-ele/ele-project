@@ -67,7 +67,7 @@
     </div>
     <!-- recommend页面 -->
     <div v-else>
-      <Recommend></Recommend>
+      <Recommendation></Recommendation>
     </div>
   </div>
   
@@ -75,11 +75,11 @@
 </template>
 
 <script>
-import Recommend from '../../components/Recommend'
+import Recommendation from './Recommendation'
 export default {
   name: 'GoldCoin',
   components: {
-    Recommend
+    Recommendation
   },
   data(){
     return {
@@ -116,7 +116,7 @@ export default {
       height 100%
       border-right 1px solid #ededed
       box-sizing border-box
-      padding 30px    
+      padding 40px    
       .icon
         position absolute
         bottom 15px
@@ -132,7 +132,7 @@ export default {
         box-sizing border-box
         height 160px
         position relative
-        padding 30px
+        padding 40px
         border-bottom 1px solid #ededed  
         .title
           color #1BA9E1
@@ -147,7 +147,7 @@ export default {
         box-sizing border-box
         height 80px
         position relative
-        padding 30px
+        padding 40px
         .title
           color #ED6660
         .icon
@@ -212,6 +212,7 @@ export default {
     font-size 18px
     text-align center
     color #999
+    margin 10px
   .gutter
     display flex
     height 380px
