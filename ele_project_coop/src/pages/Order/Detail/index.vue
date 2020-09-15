@@ -100,7 +100,7 @@
             <i class="el-icon-phone"></i>
             <span>联系商家</span>
           </div>
-          <p class="price">实付 ￥ 19.4</p>
+          <p class="price">实付 <span>￥ 19.4</span></p>
         </div>
       </div>
     </div>
@@ -199,6 +199,20 @@ export default {
           .redd
             color #ff5339
       .cust
+        display flex
+        justify-content space-between
+        align-items center
+        height 80px
+        padding 10px 0
+        border-top 1px solid #efefef
         .match
           color #2395ff
+          font-size 26px
+          span
+            margin-left 10px
+        .price
+          color #151515
+          font-size 28px
+          span
+            font-weight bold
 </style>
