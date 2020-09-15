@@ -7,12 +7,12 @@
 
 <script>
 import FooterBar from './components/FooterBar'
-// import Personal from './pages/Personal'
+
+
 export default {
   name: 'App',
   components: {
     FooterBar,
-    // Personal
   }
 }
 </script>

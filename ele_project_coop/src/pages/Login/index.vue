@@ -5,8 +5,8 @@
       <img src="https://gw.alicdn.com/tfs/TB1kHnqpcKfxu4jSZPfXXb3dXXa-750-192.png" alt="">
       </div>
       <div class="userInfo">
-        <el-input class="user-Input" @input="handleInput(true)"  v-model="phone" placeholder="手机号"></el-input>
-        <el-input class="user-Input"  @input="handleInput(false)"  v-model="code" placeholder="验证码"></el-input>
+        <input class="user-Input" @input="handleInput(true)"  v-model="phone" placeholder="手机号"/>
+        <input class="user-Input"  @input="handleInput(false)"  v-model="code" placeholder="验证码"/>
         <button disabled class="Get-validation">获取验证码</button>
       </div>
       <div class="Service-agreement">
@@ -73,13 +73,14 @@ export default {
           width 600px
           height 100px
           box-sizing border-box
-          
+          border 1px solid #DDDDDD
+          padding-left 20px
           outline-color:#02B6FD; 
           &:first-child
             margin-bottom 14px
         .Get-validation
             position absolute
-            top 212px
+            top 220px
             right 100px
             background #ffffff
             border none
