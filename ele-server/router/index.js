@@ -2,7 +2,8 @@ const KoaRouter = require('koa-router')
 const router = new KoaRouter()
 
 let FirstPage = require('../datas/yifei_index/index.json')
-
+// zhangrui
+let GoldCoinMall = require('../datas/goldCoinMall.json')
 router.get('/test', (ctx, next) => {
   ctx.body = 1
 })
@@ -13,6 +14,11 @@ router.get('/getFirstPage',(ctx,next)=>{
 })
 
 // 获取商品详情信息 ---yifei
+
+// 获取金币商城的数据 --zhangrui
+router.get('/getGoldCoinMall',(ctx,next)=>{
+  ctx.body = GoldCoinMall
+})
 
 
 module.exports = router

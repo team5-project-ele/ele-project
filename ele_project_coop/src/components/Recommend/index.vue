@@ -123,13 +123,14 @@ export default{
 </script>
 <style lang="stylus">
 .recommendContainer
-
-  height calc(100vh - 100px)
+  position relative
   .header
+    position fixed
     display flex
     height 100px
     line-height 100px
-    background #ffffff
+    background #fff
+    z-index 100
     .conic
       width 375px
       height 100px
@@ -166,7 +167,7 @@ export default{
   .content
     width 100%
     height 260px
-    padding  25px 0 
+    padding  125px 0 25px
     display flex
     background #ededed
     .Keyboard
