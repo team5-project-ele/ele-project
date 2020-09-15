@@ -6,6 +6,9 @@ import Detail from '../pages/Order/Detail'
 import Recommend from '../components/Recommend'
 import Recommendation from '../pages/Found/Recommendation'
 import Periphery from '../pages/Found/Periphery'
+import CategoryStore from '../pages/Home/CategoryStore'
+import OrderInfo from '../components/OrderInfo'
+
 export default [
   {
     path: '/home',
@@ -53,7 +56,18 @@ export default [
     component: Personal
   },
   {
+    path: '/orderinfo',
+    component: OrderInfo,
+    meta: {
+      isHideFooter: true
+    }
+  },
+  {
     path: '/',
     redirect: '/home'
+  },
+  {
+    path: '/categorystore',
+    component: CategoryStore
   }
 ]
