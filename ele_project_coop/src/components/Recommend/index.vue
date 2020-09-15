@@ -35,34 +35,34 @@
       </div>
     </div>
     <!-- 产品展示区 -->
-    <div class="exhibition">
-      <div class="exhibitionItem">
+    <ul class="exhibition">
+      <li class="exhibitionItem">
         <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
         <p class="title">PS4</p>
-      </div>
-      <div class="exhibitionItem">
+      </li>
+      <li class="exhibitionItem">
         <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
         <p class="title">PS4</p>
-      </div>
-      <div class="exhibitionItem">
+      </li>
+      <li class="exhibitionItem">
         <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
         <p class="title">PS4</p>
-      </div>
-      <div class="exhibitionItem">
+      </li>
+      <li class="exhibitionItem">
         <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
         <p class="title">PS4</p>
-      </div>
-      <div class="exhibitionItem">
+      </li>
+      <li class="exhibitionItem">
         <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
         <p class="title">PS4</p>
-      </div>
-      <div class="exhibitionItem">
+      </li>
+      <li class="exhibitionItem">
         <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
         <p class="title">PS4</p>
-      </div>
-    </div>
-    <!-- 产品兑换区 -->
-    <ul class="exchange">
+      </li>
+    </ul>
+     <!-- 产品兑换区 -->
+     <ul class="exchange">
       <li class="exchangeItem">
         <div class="ImgItem">
           <img src="./image/sromdt.jpg" alt="后期遍历得来">
@@ -211,40 +211,69 @@ export default{
           height 100% 
   .exhibition
     display flex
-    flex-direction column
-    flex-wrap wrap
+    flex-flow row wrap 
+    justify-content space-around
+    align-items center
     background #fff
-    width 700px 
     height 900px
-    padding 0 0 0 25px
     .exhibitionItem
-      width 45%
-      height 220px
-      padding 15px
+      width 43%
+      height 250px
       border 1px #ededed solid
       border-radius 10px
       img 
         width 100%
-        height 100%
+        height 80%
       .title
+        height 50px
+        text-align center
         font-size 26px
+        line-height 50px
   .exchange
     display flex
     flex-wrap wrap
-    background red
-    justify-content space-around
+    justify-content space-between
     .exchangeItem
-      flex-direction column
-      width 45%
-      height 260px
+      width 50%
+      height 400px
       margin 10px 0
+      box-sizing border-box
       border-bottom 1px solid #ededed
       border-right 1px solid #ededed
       .ImgItem
-        width 320px
-        height 200px
-        
+        width 100%
+        height 230px
+        margin 0 auto
         img 
           width 100%
-          height 100% 
+          height 100%
+      .titleItem
+        position relative
+        box-sizing border-box
+        height 150px
+        padding 0 0 0 30px
+        .title
+          height 60px
+          line-height 60px
+          font-size 28px
+        .price
+          height 35px
+          line-height 30px  
+          font-size 24px
+          color red
+        .btn
+          position absolute
+          right 30px
+          bottom 5px
+          width 100px
+          height 40px
+          border-radius 35px
+          text-align center
+          line-height 40px
+          font-size 24px
+          color red
+          border 1px solid red
+          background-color:transparent;
+ 
+          
 </style>
