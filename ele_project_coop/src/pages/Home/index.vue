@@ -15,7 +15,7 @@
     <div class="firstPageContext">
       <!-- 分类区 -->
       <div class="navFood">
-        <div class="navItem" v-for="navItem in classificationFood" :key="navItem.id">
+        <div class="navItem" v-for="navItem in classificationFood" :key="navItem.id" @click="toPath">
           <img :src="navItem.image">
           <span>{{navItem.name}}</span>
         </div>
@@ -45,6 +45,7 @@
       <!-- 推荐商家 -->
       <div class="recommedStore">
         <span class="store">推荐商家</span>
+        <StoreList />
       </div>
     </div>
     
@@ -53,10 +54,12 @@
 <script>
 import {reqFirstPageInfo} from '../../api/index'
 import { Search ,Button } from 'vant'
+import StoreList from '../../components/StoreList'
 export default {
   name:'Home',
   components: {
-    [Search.name]: Search
+    [Search.name]: Search,
+    StoreList
   },
   data () {
     return {
@@ -69,8 +72,12 @@ export default {
   methods: {
     async getFirstPage () {
       const result = await reqFirstPageInfo()
-      console.log(result.data.classification.entries)
       this.classificationFood = result.data.classification.entries
+    },
+
+    // 点击美食，跳转到具体页面
+    toPath () {
+      this.$router.push('/categorystore')
     }
   }
 }

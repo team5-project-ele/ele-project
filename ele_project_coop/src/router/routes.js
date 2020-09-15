@@ -3,6 +3,7 @@ import Found from '../pages/Found'
 import Order from '../pages/Order'
 import Personal from '../pages/Personal'
 import Detail from '../pages/Order/Detail'
+import CategoryStore from '../pages/Home/CategoryStore'
 export default [
   {
     path: '/home',
@@ -30,5 +31,9 @@ export default [
   {
     path: '/',
     redirect: '/home'
+  },
+  {
+    path: '/categorystore',
+    component: CategoryStore
   }
 ]
