@@ -9,3 +9,8 @@ export const reqFirstPageInfo = () => ajax.get(`/getFirstPage`)
 
 // 商家商品信息---艺飞
 export const reqCategoryStore = () => ajax.get(`/categoryStore`)
+
+// 获取订单详情的接口
+export const reqOrderList = () => ajax.get(`/orderlist`)
+// 获取订单商品的详情
+export const reqOrderItem = (id) => ajax.get(`/getorderitems?id=${id}`)
