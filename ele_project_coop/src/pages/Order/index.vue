@@ -11,7 +11,8 @@
           <div class="header">
             <div class="title">
               <span>頭叁甲(包子油条豆腐脑回龙观东大街店)</span>
-              <i class="el-icon-arrow-right"></i>
+              <!-- <i class="el-icon-arrow-right"></i> -->
+              <van-icon name="arrow" />
               <p>已送达</p>
             </div>
             <div class="time">
