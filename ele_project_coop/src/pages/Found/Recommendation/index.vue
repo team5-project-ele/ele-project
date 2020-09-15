@@ -15,8 +15,12 @@
   </div>
 </template>
 <script>
+  // import { Icon } from 'vant'
   export default{
-    name:'Recommendation'
+    name:'Recommendation',
+    // components:{
+    //   [Icon.name]:Icon
+    // }
   }
 </script>
 <style lang="stylus">
@@ -24,7 +28,7 @@
   margin 0
   padding 0
   .recommendationContainer
-    height 1370px
+    height 1200px
     width 100%
     background rgb(249, 53, 93)
     .recommendationImg
@@ -33,4 +37,10 @@
       img 
         width 100%
         height 100%
+    .notice
+      margin 35px auto 0
+      width 94%
+      height 100px
+      background rgb(242,44,72)
+          
 </style>
