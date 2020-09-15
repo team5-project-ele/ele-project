@@ -3,6 +3,7 @@ import Found from '../pages/Found'
 import Order from '../pages/Order'
 import Personal from '../pages/Personal'
 import Detail from '../pages/Order/Detail'
+import OrderInfo from '../components/OrderInfo'
 export default [
   {
     path: '/home',
@@ -26,6 +27,13 @@ export default [
   {
     path: '/personal',
     component: Personal
+  },
+  {
+    path: '/orderinfo',
+    component: OrderInfo,
+    meta: {
+      isHideFooter: true
+    }
   },
   {
     path: '/',
