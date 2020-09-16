@@ -14,3 +14,11 @@ export const reqCategoryStore = () => ajax.get(`/categoryStore`)
 export const reqOrderList = () => ajax.get(`/orderlist`)
 // 获取订单商品的详情
 export const reqOrderItem = (id) => ajax.get(`/getorderitems?id=${id}`)
+
+// 获取金币商城数据（公共组件） --张蕊
+export const reqOperatingList =() => ajax.get('/getOperating')
+export const reqGoldCoinMallList = () => ajax.get('/getGoldCoinMall')
+export const reqFirstScreen = () => ajax.get('/getfirstScreen')
+export const reqIndexIsfirst = () =>ajax.get('/getindexIsfirst')
+
+

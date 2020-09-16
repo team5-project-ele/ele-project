@@ -3,13 +3,15 @@ const router = new KoaRouter()
 
 let FirstPage = require('../datas/yifei_index/index.json')
 // zhangrui
-let GoldCoinMall = require('../datas/goldCoinMall.json')
-
+let operatingList = require('../datas/zhangrui_goldCoinMall/operating.json')
+let GoldCoinMall = require('../datas/zhangrui_goldCoinMall/goldCoinMall.json')
+let firstScreen = require('../datas/zhangrui_firstScreen/firstScreen.json')
+let indexIsfirst = require('../datas/zhangrui_firstScreen/indexIsfirst.json')
 let CategoryStore = require('../datas/yifei_deliciousFood/categoryStore.json')
 
 let orderLists = require('../datas/orderLists/orders.json')
 
-router.get('/test', (ctx, next) => {
+router.get('/test', (ctx, next) => { 
   ctx.body = 1
 })
 
@@ -23,11 +25,25 @@ router.get('/getFirstPage', (ctx, next) => {
 router.get('/categoryStore',(ctx,next)=>{
   ctx.body = CategoryStore
 // 获取商品详情信息 ---yifei
+})
 
+//获取金币商城的商品操作数据---zhangrui
+router.get('/getOperating',(ctx,next)=>{
+  ctx.body = operatingList
+})
 
-// 获取金币商城的数据 --zhangrui
+// 获取金币商城的全部商品数据 --zhangrui
 router.get('/getGoldCoinMall',(ctx,next)=>{
   ctx.body = GoldCoinMall
+})
+
+// 获取发现屏轮播界面--zhangrui
+router.get('/getfirstScreen',(ctx,next)=>{
+  ctx.body = firstScreen
+})
+// 获取轮播界面内部的页面数据--zhangrui
+router.get('/getindexIsfirst',(ctx,next)=>{
+  ctx.body = indexIsfirst
 })
 
 // 获取订单列表详情 ---lzm

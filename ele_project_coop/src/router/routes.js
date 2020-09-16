@@ -8,6 +8,7 @@ import Recommendation from '../pages/Found/Recommendation'
 import Periphery from '../pages/Found/Periphery'
 import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
+import Details from '../components/Details'
 
 export default [
   {
@@ -39,7 +40,13 @@ export default [
       isHideFooter: true // 是否隐藏底部
     }
   },
-
+  {
+    path:'/found/details',
+    component:Details,
+    meta: {
+      isHideFooter: true
+    }
+  },
   {
     path: '/order',
     component: Order
