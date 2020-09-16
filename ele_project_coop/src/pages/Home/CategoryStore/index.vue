@@ -3,7 +3,7 @@
       <!-- 全部食品分类 -->
       <div class="categoryFoot">
         <ul >
-          <li :class="{active:categoryId === item.id}" @click="toCategory(item.id)" v-for="(item,index) in categoryStoreList" :key="item.id">{{item.name}}</li>
+          <li :class="{active:categoryId === item.id}" @click="toCategory(item.id,item.restaurant_category_ids)" v-for="(item,index) in categoryStoreList" :key="item.id">{{item.name}}</li>
         </ul>
         <div class="category"><span class="iconfont icon-down" style="color:#fff"></span></div>
       </div>
@@ -17,7 +17,7 @@
       </div>
 
     <!-- 商家列表 -->
-    <StoreList />
+    <StoreList :restaurantCategoryIds="restaurantCategoryIds"/>
   </div>
 </template>
 <script>
@@ -29,6 +29,7 @@ export default {
     return {
       categoryStoreList:[], // 商家商品信息
       categoryId:'', // 每个食品分类的ID
+      restaurantCategoryIds:[], // 每个食品分类地下所属商品的ID数组数据
     }
   },
   mounted () {
@@ -38,13 +39,16 @@ export default {
     //  发送请求，请求商家商品信息数据
     async getCategoryStore () {
       const result = await reqCategoryStore()
+      console.log(result.data.category)
       this.categoryStoreList = result.data.category
       this.categoryId = result.data.category[0].id
     },
 
     // 点击出现相应点击样式，并筛选相应商品
-    toCategory (categoryId) {
+    toCategory (categoryId,restaurantCategoryIds) {
       this.categoryId = categoryId
+      this.restaurantCategoryIds = restaurantCategoryIds
+      console.log(restaurantCategoryIds)
     }
   },
   components: {

@@ -1,11 +1,13 @@
 const KoaRouter = require('koa-router')
 const router = new KoaRouter()
 
-let FirstPage = require('../datas/yifei_index/index.json')
 // zhangrui
 let GoldCoinMall = require('../datas/goldCoinMall.json')
 
 let CategoryStore = require('../datas/yifei_deliciousFood/categoryStore.json')
+let FirstPage = require('../datas/yifei/yifei_index/index.json')
+let StoreList = require('../datas/yifei/yifei_index/store.json')
+let HotSearch = require('../datas/yifei/yifei_search/hotSearch.json')
 
 let orderLists = require('../datas/orderLists/orders.json')
 
@@ -19,7 +21,7 @@ router.get('/getFirstPage', (ctx, next) => {
 })
 
 
-// 获取商家商品详情信息 ---yifei
+// 获取美食分类信息 ---yifei
 router.get('/categoryStore',(ctx,next)=>{
   ctx.body = CategoryStore
 })
@@ -32,6 +34,17 @@ router.get('/getGoldCoinMall',(ctx,next)=>{
 // 获取订单列表详情 ---lzm
 router.get('/orderlist', (ctx, next) => {
   ctx.body = orderLists
+})
+
+module.exports = router
+// 获取商家列表详情信息 ---yifei
+router.get('/storeList',(ctx,next)=>{
+  ctx.body = StoreList
+})
+
+// 热门搜索 ---yifei
+router.get('/hotSearch',(ctx,next)=>{
+  ctx.body = HotSearch
 })
 
 module.exports = router
