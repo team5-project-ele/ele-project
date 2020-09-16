@@ -225,13 +225,17 @@ export default {
       value:3, // 评分
     }
   },
-  methods: {
-     
-  },
   components: {
     [Rate.name]: Rate,
     [Tag.name]: Tag,
-  }
+  },
+  mounted () {
+    
+  },
+  methods: {
+     
+  },
+  
 }
 </script>
 <style scoped lang='stylus'>
