@@ -11,16 +11,11 @@ export const reqFirstPageInfo = () => ajax.get(`/getFirstPage`)
 export const reqCategoryStore = () => ajax.get(`/categoryStore`)
 
 // 获取订单详情的接口
-<<<<<<< HEAD
 export const reqTradeInfo = () => ajax.get(`/order/auth/trade`)
 
 
-export const reqFirstPageInfo = () => ajax.get(`/getFirstPage`)
-
 // 获取验证码的接口
 export const reqGetCaptcha = () => ajax.get(`/getcaptcha`)
-=======
 export const reqOrderList = () => ajax.get(`/orderlist`)
 // 获取订单商品的详情
 export const reqOrderItem = (id) => ajax.get(`/getorderitems?id=${id}`)
->>>>>>> c1631c7b5da365bd8ba9cc765cd5fb268e6324cb

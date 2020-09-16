@@ -4,16 +4,13 @@ import Order from '../pages/Order'
 import Personal from '../pages/Personal'
 import Login from '../pages/Login'
 import Detail from '../pages/Order/Detail'
-<<<<<<< HEAD
 import RedEnvelopes from '../pages/Personal/RedEnvelopes'
 import GoldCoin from '../pages/Personal/GoldCoin'
-=======
 import Recommend from '../components/Recommend'
 import Recommendation from '../pages/Found/Recommendation'
 import Periphery from '../pages/Found/Periphery'
 import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
->>>>>>> c1631c7b5da365bd8ba9cc765cd5fb268e6324cb
 
 export default [
   
