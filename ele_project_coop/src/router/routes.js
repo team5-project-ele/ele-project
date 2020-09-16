@@ -4,6 +4,7 @@ import Order from '../pages/Order'
 import Personal from '../pages/Personal'
 import Detail from '../pages/Order/Detail'
 import CategoryStore from '../pages/Home/CategoryStore'
+import Search from '../pages/Home/Search'
 export default [
   {
     path: '/home',
@@ -35,5 +36,9 @@ export default [
   {
     path: '/categorystore',
     component: CategoryStore
+  },
+  {
+    path: '/search',
+    component: Search
   }
 ]
