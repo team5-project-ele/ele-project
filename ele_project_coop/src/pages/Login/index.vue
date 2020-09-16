@@ -7,7 +7,7 @@
       <div class="userInfo">
         <input class="user-Input" @input="handleInput(true)"  v-model="phone" placeholder="手机号"/>
         <input class="user-Input"  @input="handleInput(false)"  v-model="code" placeholder="验证码"/>
-        <button disabled class="Get-validation">获取验证码</button>
+        <button :class="{grey:handleDisabled}" :disabled="handleDisabled" class="Get-validation" @click="handleCode">获取验证码</button>
       </div>
       <div class="Service-agreement">
         新用户登录即自动注册，并表示已同意
@@ -26,32 +26,74 @@
   </div>
 </template>
 <script>
-
+import {Toast} from 'vant'
+import {reqGetCaptcha} from '../../api/index'
 export default {
   name: 'Login',
+  components: {
+    [Toast.name]:Toast
+  },
   data(){
     return {
       A: '《用户服务协议》',
       B: '《隐私权政策》',
       phone: '',
       code: '',
+      captcha: 0,
     }
+  },
+  mounted(){
+    this.phone = ''
+    this.captcha = 0
   },
     methods: {
       handleInput(flag){
         if(flag){
-          // this.phone.length === 11 ?  :
+          
 
         }
       },
       handleLogin(){
-        const {phone, code} = this
-        if(phone && code){ // 未输入手机号&验证码
+        const {phone, code, captcha} = this
+        let phoneReg = /^1(3|4|5|6|7|8|9)\d{9}/;
+        if(!phone){ // 未输入手机号&验证码
+          Toast({
+                message: '请填写手机号',
+                position: 'bottom',
+              })
           
         }else{
-          console.log('验证')
+          if(!phoneReg.test(phone)){
+            Toast({message: '手机号不正确', position: 'bottom'})
+          }else{ // 验证码是否匹配
+            if(code>>>0 === captcha){
+              // 登录成功
+              this.$router.replace({path:`/personal?phone=${phone}`})
+            }else{
+              Toast({message: `验证码不正确，请重新输入，验证码为:${captcha}`, position: 'top'})
+            }
+          }
         }
-        console.log('点击登录')
+      },
+      async handleCode(){
+        // this.captcha = 0
+        let result  = await reqGetCaptcha()
+        let CAPTCHA = result.data
+        this.captcha = CAPTCHA
+
+        Toast({message:`验证码${CAPTCHA}`, position: 'top'})
+      }
+    },
+    computed: {
+      handleDisabled(){
+        let flag = true;
+        if(this.phone.length === 11){
+          // 手机号为11位数，
+          flag = false
+        }else{
+          flag = true
+        }
+        return flag
       }
     }
 }
@@ -75,15 +117,18 @@ export default {
           box-sizing border-box
           border 1px solid #DDDDDD
           padding-left 20px
-          outline-color:#02B6FD; 
+          outline-color #02B6FD
+          border-radius 10px
           &:first-child
-            margin-bottom 14px
+            margin-bottom 30px
         .Get-validation
             position absolute
-            top 220px
+            top 230px
             right 100px
             background #ffffff
             border none
+        .grey
+          color #CCCCCC
       .login-logo 
         width 326px
         height 70px
@@ -94,8 +139,8 @@ export default {
           height 100%
           height 100%
       .Service-agreement
-        margin-top 20px
-        padding 0 15px
+        margin-top 30px
+        padding 0 0px
         font-size 28px
         color #999999
         span 

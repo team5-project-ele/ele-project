@@ -20,5 +20,5 @@ export default {
 <style lang="stylus">
 #app
   width 100%
-  height calc(100vh - 102px)
+  height 100%
 </style>

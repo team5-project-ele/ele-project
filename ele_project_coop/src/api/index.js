@@ -32,3 +32,6 @@ export const reqTradeInfo = () => ajax.get(`/order/auth/trade`)
 
 
 export const reqFirstPageInfo = () => ajax.get(`/getFirstPage`)
+
+// 获取验证码的接口
+export const reqGetCaptcha = () => ajax.get(`/getcaptcha`)
