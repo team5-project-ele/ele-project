@@ -4,18 +4,14 @@
     <!-- 头部定位和搜索框 -->
     <div class="header">
       <div class="address el-icon-location-outline">华北理工大学</div>
-      <!-- <input placeholder="搜索饿了么商家，商品名称" class="search">
-        <van-icon name="search" />
-      </input> -->
-      <!-- <van-search placeholder="搜索饿了么商家，商品名称" class="search" background="#0091FF" ></van-search> -->
-      <div class="search">
+      <div class="search" @click="toPath('/search')">
         <span class=" iconfont icon--search">搜索饿了么商家，商品名称</span>
       </div>
     </div>
     <div class="firstPageContext">
       <!-- 分类区 -->
       <div class="navFood">
-        <div class="navItem" v-for="navItem in classificationFood" :key="navItem.id" @click="toPath">
+        <div class="navItem" v-for="navItem in classificationFood" :key="navItem.id" @click="toPath('/categorystore')">
           <img :src="navItem.image">
           <span>{{navItem.name}}</span>
         </div>
@@ -76,8 +72,8 @@ export default {
     },
 
     // 点击美食，跳转到具体页面
-    toPath () {
-      this.$router.push('/categorystore')
+    toPath (path) {
+      this.$router.push(path)
     }
   }
 }

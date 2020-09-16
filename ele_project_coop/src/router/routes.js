@@ -8,7 +8,7 @@ import Recommendation from '../pages/Found/Recommendation'
 import Periphery from '../pages/Found/Periphery'
 import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
-
+import Search from '../pages/Home/Search'
 export default [
   {
     path: '/home',
@@ -69,5 +69,9 @@ export default [
   {
     path: '/categorystore',
     component: CategoryStore
+  },
+  {
+    path: '/search',
+    component: Search
   }
 ]

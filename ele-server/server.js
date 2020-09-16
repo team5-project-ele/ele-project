@@ -5,6 +5,7 @@ const app = new Koa()
 app
   .use(router.routes())
   .use(router.allowedMethods())
+  
 app.listen('5000', () => {
   console.log('服务器启动成功')
   console.log('服务器地址：http://localhost:5000')
