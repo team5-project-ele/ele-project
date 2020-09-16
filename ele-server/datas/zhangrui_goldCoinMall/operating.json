@@ -1,0 +1,59 @@
+{
+  "data": {
+  "unitName": "金币",
+  "count": null,
+  "list": [
+    {
+    "bannerImage": "//yun.duiba.com.cn/upload/vgs5fzyakl.png",
+    "image": "//yun.duiba.com.cn/images/201708/de6vx56t2w.png",
+    "smallImage": "//yun.duiba.com.cn/images/201708/de6vx56t2w.png",
+    "id": 135164955453121,
+    "title": "PS4",
+    "url": "//activity.m.duiba.com.cn/singleLottery/index?id=135164955453121&dbnewopen"
+    },
+    {
+    "bannerImage": "//yun.duiba.com.cn/upload/vgs5fzyakl.png",
+    "image": "//yun.duiba.com.cn/images/201906/29tlvqs908.jpg",
+    "smallImage": "//yun.duiba.com.cn/images/201906/29tlvqs908.jpg",
+    "id": 135164836955956,
+    "title": "Beats头戴式耳机",
+    "url": "//activity.m.duiba.com.cn/singleLottery/index?id=135164836955956&dbnewopen"
+    },
+    {
+    "bannerImage": "//yun.duiba.com.cn/upload/vgs5fzyakl.png",
+    "image": "//yun.duiba.com.cn/images/202006/ydlqbai4x6.png",
+    "smallImage": "//yun.duiba.com.cn/images/202006/ydlqbai4x6.png",
+    "id": 135164756215681,
+    "title": "卡西欧自拍小神器",
+    "url": "//activity.m.duiba.com.cn/singleLottery/index?id=135164756215681&dbnewopen"
+    },
+    {
+    "bannerImage": "//yun.duiba.com.cn/upload/vgs5fzyakl.png",
+    "image": "//yun.duiba.com.cn/images/202006/2gqitykg8l.jpeg",
+    "smallImage": "//yun.duiba.com.cn/images/202006/2gqitykg8l.jpeg",
+    "id": 135163795729171,
+    "title": "JBL耳机",
+    "url": "//activity.m.duiba.com.cn/singleLottery/index?id=135163795729171&dbnewopen"
+    },
+    {
+    "bannerImage": "//yun.duiba.com.cn/upload/vgs5fzyakl.png",
+    "image": "//yun.duiba.com.cn/images/201906/jyfppl2a0p.jpg",
+    "smallImage": "//yun.duiba.com.cn/images/201906/jyfppl2a0p.jpg",
+    "id": 135163665697681,
+    "title": "Kindle",
+    "url": "//activity.m.duiba.com.cn/singleLottery/index?id=135163665697681&dbnewopen"
+    },
+    {
+    "bannerImage": "//yun.duiba.com.cn/upload/vgs5fzyakl.png",
+    "image": "//yun.duiba.com.cn/images/202006/t6rqdjp1wq.jpeg",
+    "smallImage": "//yun.duiba.com.cn/images/202006/t6rqdjp1wq.jpeg",
+    "id": 135163596491731,
+    "title": "华为荣耀盒子",
+    "url": "//activity.m.duiba.com.cn/singleLottery/index?id=135163596491731&dbnewopen"
+    }
+  ],
+  "vipGoodsIcon": null
+  },
+  "success": true,
+  "timestamp": 1600222184206
+  }

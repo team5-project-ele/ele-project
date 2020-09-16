@@ -22,7 +22,8 @@
         <van-button size="small"
                     class="but"
                     color="#2395ff"
-                    plain>再来一单</van-button>
+                    plain
+                    @click="toOrderInfo">再来一单</van-button>
       </div>
       <div class="list"
            v-if="orderInfo">
@@ -164,7 +165,9 @@ export default {
     }
   },
   methods: {
-
+    toOrderInfo () {
+      this.$router.push('/orderinfo')
+    },
     toOrder () {
       this.$router.push('/order')
     },
