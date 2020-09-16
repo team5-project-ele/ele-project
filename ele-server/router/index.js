@@ -20,13 +20,13 @@ router.get('/getFirstPage', (ctx, next) => {
 
 
 // 获取商家商品详情信息 ---yifei
-router.get('/categoryStore',(ctx,next)=>{
+router.get('/categoryStore', (ctx, next) => {
   ctx.body = CategoryStore
-// 获取商品详情信息 ---yifei
-
+  // 获取商品详情信息 ---yifei
+})
 
 // 获取金币商城的数据 --zhangrui
-router.get('/getGoldCoinMall',(ctx,next)=>{
+router.get('/getGoldCoinMall', (ctx, next) => {
   ctx.body = GoldCoinMall
 })
 
@@ -35,4 +35,4 @@ router.get('/orderlist', (ctx, next) => {
   ctx.body = orderLists
 })
 
-module.exports = router
+module.exports = router;
