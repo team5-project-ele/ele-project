@@ -21,7 +21,19 @@
     <!-- 中奖名单 -->
     <p class="clock"> 流沙包 已获取18元现金</p>
     <!-- 立即赚现金 -->
-    <button class="btn">立即赚现金</button>
+    <button class="btn" @click="immediately">立即赚现金</button>
+    <van-popup v-model="show" closeable position="bottom" :style="{ height: '25%' }">
+      <ul class="share">
+        <li @click="goInvitation">
+          <img src="./image/show.svg" alt="">
+          <p>二维码</p>
+        </li>
+        <li>
+          <img src="./image/lianje.png" alt="">
+          <p>复制链接</p>
+        </li>
+      </ul>
+    </van-popup>
     <!-- 查看赚钱攻略 -->
     <div class="strategy">
       <van-icon name="orders-o" />
@@ -72,11 +84,23 @@
   </div>
 </template>
 <script>
-  import { Icon } from 'vant'
+  import { Icon,popup,cell } from 'vant'
   export default{
     name:'Recommendation',
     components:{
-      [Icon.name]:Icon
+      [Icon.name]:Icon,
+      [popup.name]:popup,
+      [cell.name]:cell
+    },
+    data(){
+      return{
+        show:false
+      }
+    },
+    methods:{
+      immediately(){
+        this.show = true;        
+      }
     }
   }
 </script>
@@ -128,7 +152,22 @@
       margin 10px 100px 
       font-size 38px
       font-weight bold
-      color rgb(86,27,4) 
+      color rgb(86,27,4)
+    .share
+      display flex
+      justify-content center
+      text-align center
+      height 200px
+      margin 130px auto
+      li
+        width 300px
+        height 150px
+        img
+          width 100px
+          height 100px
+        p
+          font-size 28px
+          margin 10px
     .strategy
       display flex
       font-size 32px      

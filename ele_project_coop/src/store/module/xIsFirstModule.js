@@ -1,6 +1,6 @@
 import { reqIndexIsfirst } from '../../api'
 const state = {
-  xlsfirstData:{}
+  xlsfirstData:[]
 }
 
 const mutations = {
@@ -15,11 +15,12 @@ const actions = {
     if(result.status === 200){
       commit('getXIsfirstData',result.data)
     }
-  }
+  },
+
 }
 
 const getters = {
-
+ 
 }
 export default {
   state,

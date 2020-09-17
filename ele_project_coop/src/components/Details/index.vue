@@ -1,51 +1,59 @@
 <template>
-  <div class="detailsContainer">
-    <!-- 头部图片 价格 -->
-    <div class="imgContent">
-      <img :src="(xlsfirstData.imageurl)" alt="">
-    </div>
-    <!-- 中奖名单 -->
-    <div class="prize">
-      <van-icon class="icon" name="volume" />
-      <span class="title">139****4542的温州用户获得PS4-抽奖,133****6942的徐州用户获得PS4-抽奖</span>
-    </div>
-    <!-- 价格 -->
-    <div class="price">
-      <div class="pricebanner">
-        <h2 class="commodity">PS4</h2>
-        <p class="original "><s>￥{{xlsfirstData.prize}}元</s></p>
-        <div class="coin">
-          <p>{{xlsfirstData.credits}}<span>{{xlsfirstData.unitName}}</span></p>
+  <div class="detailsContainer" v-if="xlsfirstData[navIndex]">
+      <!-- 头部图片 价格 -->
+      <div class="imgContent" >
+        <img :src="xlsfirstData[navIndex].imageurl" alt="">
+      </div>
+      <!-- 中奖名单 -->
+      <div class="prize">
+        <van-icon class="icon" name="volume" />
+        <span class="title">139****4542的温州用户获得PS4-抽奖,133****6942的徐州用户获得PS4-抽奖</span>
+      </div>
+      <!-- 价格 -->
+      <div class="price">
+        <div class="pricebanner">
+          <h2 class="commodity">{{xlsfirstData[navIndex].title}}</h2>
+          <p class="original "><s>￥{{xlsfirstData[navIndex].prize}}元</s></p>
+          <div class="coin">
+            <p>{{xlsfirstData[navIndex].credits}}<span>{{xlsfirstData[navIndex].unitName}}</span></p>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- 内容介绍 -->
-    <div class="main">
-      <div class="explain">
-        <div class="play">
-          <van-icon class="icon" name="play" />
-          <p class="title">详情说明：</p>
-        </div>
-        <!-- 商品介绍 -->
-        <div class="conent" v-html="xlsfirstData.introduction">
-          <h3>商品简介</h3>
+      <!-- 内容介绍 -->
+      <div class="main">
+        <div class="explain">
+          <div class="play">
+            <van-icon class="icon" name="play" />
+            <p class="title">详情说明：</p>
+          </div>
+          <!-- 商品介绍 -->
+          <div class="conent" v-html="xlsfirstData[navIndex].introduction">
+            <h3>商品简介</h3>
+          </div>
         </div>
       </div>
-    </div>
-    <p class="sticky">*兑换项与活动和设备生产商Apple Inc.公司无关</p>
-    <div class="footer">
-      <button class="submit">金币不足</button>
-    </div>
+      <p class="sticky">*兑换项与活动和设备生产商Apple Inc.公司无关</p>
+      <div class="footer">
+        <button class="submit">金币不足</button>
+      </div>
   </div>
 </template>
 <script>
 import {mapState,mapActions} from 'vuex'
+
 export default{
   name:'Details',
+  data () {
+    return {
+      navIndex:0
+    }
+  },
   mounted (){
     this.getXIsfirstDataActions()
-    // console.log(this.xlsfirstData)
-    let xlsfirstData = this
+    // console.log(this.xlsfirstData) //数组中三个对象
+    let navIndex = this.$route.query.navIndex
+    this.navIndex = navIndex
+    // console.log(navIndex) //当前下标
   },
   methods:{
     ...mapActions({
@@ -55,7 +63,7 @@ export default{
   computed:{
     ...mapState({
       xlsfirstData: state => state.xIsFirstModule.xlsfirstData
-    })
+    }),
   }
 }
 </script>
@@ -66,7 +74,7 @@ export default{
   background #f5f5f5
   .imgContent
     width 100%
-    height 350px
+    height 400px
     img
       width 100%
       height 100%
@@ -117,7 +125,6 @@ export default{
           margin-left 10px
   .main
     width 100%
-    height 1010px
     background #FFF
     .explain
       padding 20px
@@ -134,7 +141,7 @@ export default{
           color #999
     .conent
       margin-top 20px
-      height 92%
+      height 100%
       h4
         font-size 28px 
         font-weight bold
