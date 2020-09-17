@@ -20,6 +20,10 @@ export const reqStoreList = ()=> ajax.get(`/storeList`)
 
 // 热门搜索数组数据---艺飞
 export const reqHotSearch = ()=> ajax.get(`/hotSearch`)
+
+// 商家筛选---艺飞
+export const reqScreen = ()=> ajax.get(`/screen`)
+
 // 获取金币商城数据（公共组件） --张蕊
 export const reqOperatingList =() => ajax.get('/getOperating')
 export const reqGoldCoinMallList = () => ajax.get('/getGoldCoinMall')

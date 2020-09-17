@@ -2,11 +2,12 @@ const KoaRouter = require('koa-router')
 const router = new KoaRouter()
 
 
-
+// yifei
 let FirstPage = require('../datas/yifei/yifei_index/index.json')
 let CategoryStore = require('../datas/yifei/yifei_deliciousFood/categoryStore.json')
 let StoreList = require('../datas/yifei/yifei_index/store.json')
 let HotSearch = require('../datas/yifei/yifei_search/hotSearch.json')
+let Screen = require('../datas/yifei/yifei_deliciousFood/screen.json')
 
 //lzm
 let orderLists = require('../datas/orderLists/orders.json')
@@ -39,6 +40,11 @@ router.get('/storeList', (ctx, next) => {
 // 热门搜索 ---yifei
 router.get('/hotSearch', (ctx, next) => {
   ctx.body = HotSearch
+})
+
+// 商家筛选 ---yifei
+router.get('/screen', (ctx, next) => {
+  ctx.body = Screen
 })
 
 //获取金币商城的商品操作数据---zhangrui

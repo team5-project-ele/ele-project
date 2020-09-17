@@ -14,7 +14,7 @@
             <!-- 评分 -->
             <div class="score">
               <van-rate
-                v-model="value"
+                :value="storeItem.restaurant.rating"
                 :size="6"
                 :gutter="8"
                 color="#ffd21e"
@@ -55,8 +55,6 @@
   </div>
 </template>
 <script>
-// isShow(storeItem.restaurant.flavors[0].id)
-// restaurantCategoryIds.length !== 0 ? restaurantCategoryIds.includes(storeItem.restaurant.flavors[0].id) : 'true'
 import { Rate ,Tag} from 'vant'
 import {reqStoreList} from '../../api/index'
 export default {
@@ -74,6 +72,7 @@ export default {
   },
   mounted () {
     this.getStoreList()
+    this.storeListSort()
   },
   methods: {
     //  发送请求，获取商家列表数据
@@ -82,6 +81,36 @@ export default {
       this.storeList = result.data.items
     },
 
+    // 对综合排序下的选项进行排序
+    storeListSort () {
+      this.$screen.$on('storeSort',(value)=>{
+        if (value === 1) {
+          // 起送价最低
+          this.storeList.sort(function (a,b) {
+            return a.restaurant.piecewise_agent_fee.rules[0].price - b.restaurant.piecewise_agent_fee.rules[0].price
+          })
+        }else if (value === 2) {
+          // 配送最快
+          this.storeList.sort(function (a,b) {
+            return a.restaurant.order_lead_time - b.restaurant.order_lead_time
+          })
+        }else if (value === 0 || value === 7) {
+          this.storeList.sort(function (a,b) {
+            return b.restaurant.rating - a.restaurant.rating
+          })
+        }else if (value === 5) {
+          this.storeList.sort(function (a,b) {
+            return a.restaurant.distance - b.restaurant.distance
+          })
+        }else if (value === 6) {
+          this.storeList.sort(function (a,b) {
+            return b.restaurant.recent_order_num - a.restaurant.recent_order_num
+          })
+        }
+       
+        
+      })
+    }
   },
 
   
