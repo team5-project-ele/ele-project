@@ -113,126 +113,39 @@
               color="#2396ff">
       <van-tab class="tab"
                title="点餐">
-        <div class="main">
-          <div class="hot">
-            <div class="main-img">
-              <img src="./order/section.webp"
-                   alt="">
-            </div>
-            <div class="recommend">
-              <p>镇店爆款 人气热销TOP5</p>
-              <ul class="list">
-                <li class="tops">
-                  <img src="./order/list1.webp"
-                       alt="">
-                  <h4>棒槌油条</h4>
-                  <p>月售545 好评率88%</p>
-                  <div class="sale">
-                    <span>￥6</span>
-                    <van-icon class="sale-icon"
-                              name="add"
-                              color="#2396ff" />
-                  </div>
-                </li>
-                <li class="tops">
-                  <img src="./order/list1.webp"
-                       alt="">
-                  <h4>棒槌油条</h4>
-                  <p>月售545 好评率88%</p>
-                  <div class="sale">
-                    <span>￥6</span>
-                    <van-icon class="sale-icon"
-                              name="add"
-                              color="#2396ff" />
-                  </div>
-                </li>
-                <li class="tops">
-                  <img src="./order/list1.webp"
-                       alt="">
-                  <h4>棒槌油条</h4>
-                  <p>月售545 好评率88%</p>
-                  <div class="sale">
-                    <span>￥6</span>
-                    <van-icon class="sale-icon"
-                              name="add"
-                              color="#2396ff" />
-                  </div>
-                </li>
-                <li class="tops">
-                  <img src="./order/list1.webp"
-                       alt="">
-                  <h4>棒槌油条</h4>
-                  <p>月售545 好评率88%</p>
-                  <div class="sale">
-                    <span>￥6</span>
-                    <van-icon class="sale-icon"
-                              name="add"
-                              color="#2396ff" />
-                  </div>
-                </li>
-                <li class="tops">
-                  <img src="./order/list1.webp"
-                       alt="">
-                  <h4>棒槌油条</h4>
-                  <p>月售545 好评率88%</p>
-                  <div class="sale">
-                    <span>￥6</span>
-                    <van-icon class="sale-icon"
-                              name="add"
-                              color="#2396ff" />
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <van-sticky class="stickyContainer"
-                      :offset-top="50">
-            <van-sidebar class="sideContainer"
-                         v-model="activeKey">
-              <van-sidebar-item title="收藏有礼">
-
-              </van-sidebar-item>
-              <van-sidebar-item title="热销"></van-sidebar-item>
-              <van-sidebar-item title="优惠"></van-sidebar-item>
-              <van-sidebar-item title="必选品"></van-sidebar-item>
-              <van-sidebar-item title="干粮"></van-sidebar-item>
-              <van-sidebar-item title="滋溜"></van-sidebar-item>
-              <van-sidebar-item title="小吃"></van-sidebar-item>
-              <van-sidebar-item title="面条"></van-sidebar-item>
-              <van-sidebar-item title="饮料"></van-sidebar-item>
-              <van-sidebar-item title="卤菜"></van-sidebar-item>
-              <van-sidebar-item title="消费纠纷和解员"></van-sidebar-item>
-            </van-sidebar>
-          </van-sticky>
-        </div>
-
+        <RestaurantInfo />
       </van-tab>
       <van-tab class="tab"
                title="评价">
-        内容2
+        <RestaurantInfo />
       </van-tab>
       <van-tab class="tab"
                title="商家">
-        内容3
+        <RestaurantInfo />
       </van-tab>
     </van-tabs>
   </div>
 </template>
 
 <script>
-import { Tab, Tabs, Sticky, Tag, ActionSheet, Popup, Divider, Sidebar, SidebarItem } from 'vant'
+import { Button, Tab, Tabs, Sticky, Tag, ActionSheet, Popup, Divider, Sidebar, SidebarItem } from 'vant'
+import RestaurantInfo from './RestaurantInfo'
 export default {
   name: 'OrderInfo',
   data () {
     return {
       show: false,
       sheet: false,
-      active: 0,
-      activeKey: 0
+      active: 0
     }
   },
+  mounted () {
+
+  },
   components: {
+    RestaurantInfo,
     [Tab.name]: Tab,
+    [Button.name]: Button,
     [Tabs.name]: Tabs,
     [Tag.name]: Tag,
     [Sticky.name]: Sticky,
@@ -259,7 +172,7 @@ export default {
   height 100%
   .header
     width 100%
-    height 537px
+    // height 537px
     background-color #fff
     .top
       height 200px
@@ -419,57 +332,4 @@ export default {
       >p
         color #999
         padding 0 60px
-  .tabs
-    .tab
-      .main
-        .hot
-          display flex
-          flex-direction column
-          .main-img
-            width 686px
-            height 176px
-            margin 0 auto
-            >img
-              width 100%
-              height 100%
-              border-radius 5px
-          .recommend
-            height 500px
-            width calc(100vw - 25px)
-            padding-left 25px
-            margin-top 25px
-            >p
-              font-weight bold
-              font-size 35px
-              margin-bottom 25px
-            .list
-              height 400px
-              display flex
-              overflow auto
-              .tops
-                height 100%
-                margin-right 25px
-                >img
-                  width 240px
-                  height 240px
-                h4
-                  color #333
-                  margin 15px 0
-                  font-size 28px
-                >p
-                  color #999
-                .sale
-                  width 240px
-                  display flex
-                  margin-top 20px
-                  justify-content space-between
-                  span
-                    color #ff5339
-                    font-size 35px
-                  .sale-icon
-                    font-size 50px
-          .stickyContainer
-            overflow auto
-            .sideContainer
-              overflow auto
 </style>

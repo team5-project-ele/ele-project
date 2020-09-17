@@ -9,6 +9,7 @@ import Periphery from '../pages/Found/Periphery'
 import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
 import Search from '../pages/Home/Search'
+import RestaurantInfo from '../components/OrderInfo/RestaurantInfo'
 export default [
   {
     path: '/home',
@@ -19,22 +20,22 @@ export default [
     component: Found,
   },
   {
-    path:'/found/recommend',
-    component:Recommend,
+    path: '/found/recommend',
+    component: Recommend,
     meta: {
       isHideFooter: true // 是否隐藏底部
     }
   },
   {
-    path:'/found/recommendation',
-    component:Recommendation,
+    path: '/found/recommendation',
+    component: Recommendation,
     meta: {
       isHideFooter: true // 是否隐藏底部
     }
   },
   {
-    path:'/found/periphery',
-    component:Periphery,
+    path: '/found/periphery',
+    component: Periphery,
     meta: {
       isHideFooter: true // 是否隐藏底部
     }
@@ -58,6 +59,12 @@ export default [
   {
     path: '/orderinfo',
     component: OrderInfo,
+    children: [
+      {
+        path: '/orderinfo/restaurantinfo',
+        component: RestaurantInfo
+      }
+    ],
     meta: {
       isHideFooter: true
     }
