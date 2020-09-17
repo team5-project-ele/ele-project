@@ -11,6 +11,9 @@ import Recommendation from '../pages/Found/Recommendation'
 import Periphery from '../pages/Found/Periphery'
 import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
+import  ShippingAddress from '../pages/Personal/ShippingAddress'
+import MyCustomerService from '../pages/Personal/MyCustomerService'
+import Rule from '../pages/Personal/Rule'
 
 export default [
   
@@ -72,6 +75,30 @@ export default [
         path: '/personal/goldcoin',
         component: GoldCoin,
         name: 'goldcoin',
+        meta: {
+          isHideFooter: true // 是否隐藏底部
+        }
+      },
+      {
+        path: '/personal/shippingaddress',
+        component: ShippingAddress,
+        name: 'shippingaddress',
+        meta: {
+          isHideFooter: true // 是否隐藏底部
+        }
+      },
+      {
+        path: '/personal/mycustomerservice',
+        component: MyCustomerService,
+        name: 'mycustomerservice',
+        meta: {
+          isHideFooter: true // 是否隐藏底部
+        }
+      },
+      {
+        path: '/personal/rule',
+        component: Rule,
+        name: 'rule',
         meta: {
           isHideFooter: true // 是否隐藏底部
         }

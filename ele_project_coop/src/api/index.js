@@ -19,3 +19,6 @@ export const reqGetCaptcha = () => ajax.get(`/getcaptcha`)
 export const reqOrderList = () => ajax.get(`/orderlist`)
 // 获取订单商品的详情
 export const reqOrderItem = (id) => ajax.get(`/getorderitems?id=${id}`)
+
+//获取个人中心下的金币的接口
+export const reqGetGoldCoin = () => ajax.get(`/getgoldcoin`)

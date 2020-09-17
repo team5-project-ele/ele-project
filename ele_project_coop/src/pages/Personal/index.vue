@@ -1,5 +1,5 @@
  <template>
-      <div class="Container">
+    <div class="Container">
     <!-- 头部登录+金币+红包 -->
       <div v-if="this.isShow" class="personal">
         <header class="header">
@@ -33,22 +33,22 @@
         <!-- 其他选项 -->
         <main class="main">
           <ul class="Other-options">
-            <li>
+            <li @click="toJump('/personal/shippingaddress')">
               <i class="iconfont icon-weizhi"></i>
               <span>我的地址</span>
               <i class="iconfont icon-dayuhao"></i>
             </li>
-            <li class="border-bottom">
+            <li @click="toJump('/found/recommend')" class="border-bottom">
               <img src="../../../public/images/shop-coin.png"/>
               <span>金币商城</span>
               <i class="iconfont icon-dayuhao"></i>
             </li>
-            <li>
+            <li @click="toJump('/found/recommendation')">
               <img src="../../../public/images/gift.png"/>
               <span>分享拿20元现金</span>
               <i class="iconfont icon-dayuhao"></i>
             </li>
-            <li class="border-bottom">
+            <li @click="toJump('/personal/mycustomerservice')" class="border-bottom">
               <i class="iconfont icon-kefu"></i>
               <span>我的客服</span>
               <i class="iconfont icon-dayuhao"></i>
@@ -58,7 +58,7 @@
               <span>下载饿了么APP</span>
               <i class="iconfont icon-dayuhao"></i>
             </li>
-            <li>
+            <li @click="toJump('/personal/rule')">
               <i class="iconfont icon-guize"></i>
               <span>规则中心</span>
               <i class="iconfont icon-dayuhao"></i>
@@ -71,7 +71,7 @@
         </footer>
       </div>
       <router-view></router-view>
-    </div>
+  </div>
 </template>
 <script>
 

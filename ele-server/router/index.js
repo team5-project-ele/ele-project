@@ -9,6 +9,8 @@ let CategoryStore = require('../datas/yifei_deliciousFood/categoryStore.json')
 
 let orderLists = require('../datas/orderLists/orders.json')
 
+let goldcoin = require('../datas/zhangtao_Personal/goldcoin.json')
+
 router.get('/test', (ctx, next) => {
   ctx.body = 1
 })
@@ -27,7 +29,11 @@ router.get('/getcaptcha', (ctx,next) => {
   }
   code = code>>>0
   ctx.body = code
-  
+})
+
+// 获取personal下的goldcoin
+router.get('/getgoldcoin', (ctx,next) => {
+  ctx.body = goldcoin
 })
 
 // 获取商家商品详情信息 ---yifei
