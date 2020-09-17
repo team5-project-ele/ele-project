@@ -1,34 +1,40 @@
 <template>
   <div class="categoryStoreContainer" style="width:100%">
       <!-- 全部食品分类 -->
-      <div class="categoryFoot">
+      <van-sticky>
+        <div class="categoryFoot">
         <ul >
-          <li :class="{active:categoryId === item.id}" @click="toCategory(item.id)" v-for="(item,index) in categoryStoreList" :key="item.id">{{item.name}}</li>
+          <li :class="{active:categoryId === item.id}" @click="toCategory(item.id,item.restaurant_category_ids)" v-for="(item,index) in categoryStoreList" :key="item.id">{{item.name}}</li>
         </ul>
         <div class="category"><span class="iconfont icon-down" style="color:#fff"></span></div>
       </div>
+      </van-sticky>
 
       <!-- 综合排序 筛选 -->
-      <div class="screen">
+      <van-sticky :offset-top="40"><Screen /></van-sticky>
+      <!-- <div class="screen">
         <div class="icon">综合排序<span class="iconfont icon-Downarrow-filled" style="font-size:10px"></span></div>
         <div>距离最近</div>
         <div>销量最高</div>
         <div>筛选<span class="iconfont icon-shaixuan"></span></div>
-      </div>
+      </div> -->
 
     <!-- 商家列表 -->
-    <StoreList />
+    <StoreList :restaurantCategoryIds="restaurantCategoryIds"/>
   </div>
 </template>
 <script>
 import StoreList from '../../../components/StoreList'
+import Screen from '../../../components/Screen'
 import {reqCategoryStore} from '../../../api/index'
+import { Sticky } from 'vant'
 export default {
   name:'Category',
   data () {
     return {
       categoryStoreList:[], // 商家商品信息
       categoryId:'', // 每个食品分类的ID
+      restaurantCategoryIds:[], // 每个食品分类地下所属商品的ID数组数据
     }
   },
   mounted () {
@@ -38,17 +44,22 @@ export default {
     //  发送请求，请求商家商品信息数据
     async getCategoryStore () {
       const result = await reqCategoryStore()
+      console.log(result.data.category)
       this.categoryStoreList = result.data.category
       this.categoryId = result.data.category[0].id
     },
 
     // 点击出现相应点击样式，并筛选相应商品
-    toCategory (categoryId) {
+    toCategory (categoryId,restaurantCategoryIds) {
       this.categoryId = categoryId
+      this.restaurantCategoryIds = restaurantCategoryIds
+      console.log(restaurantCategoryIds)
     }
   },
   components: {
-    StoreList
+    StoreList,
+    Screen,
+    [Sticky.name]: Sticky
   }
 }
 </script>
@@ -60,8 +71,8 @@ export default {
       width 100%
       background-color #009BFF
       display flex
-      position fixed
-      top 0
+      // position fixed
+      // top 0
       z-index 999
       ul
         flex 1
@@ -100,87 +111,21 @@ export default {
         box-shadow rgba(0,0,0,.1) -3px 0 10px
 
 
-    // 综合排序 筛选
-    .screen
-      height 80px
-      width 100%
-      display flex
-      justify-content space-around
-      align-items center
-      color #666
-      background-color #fff
-      position fixed
-      top 80px
-      z-index 100
-      div
-        font-size 28px
-        color #666
-    // // 商家列表
-    // .categoryStore
-    //   // position fixed
-    //   // top 160px
-    //   // width 100%
-    //   margin-top 160px
-    //   .StoreList
-    //     margin 20px
-    //     // position absolute
-    //     // top 160px
-    //     .storeItem
-    //       border-bottom 1px solid  #FCFCFC
-    //       // border-bottom 1px solid  red
-    //       padding-bottom 30px
-    //       margin-top 30px
-    //       .storeDsec
-    //         display flex
-    //         height 130px
-    //         .image
-    //           width 130px
-    //           height 130px
-    //           border 1px solid #000
-    //           margin-right 20px
-    //           img 
-    //             width 100%
-    //             height 100%
-    //         .desc
-    //           flex 1
-    //           padding 5px 0
-    //           .title
-    //             display flex
-    //             justify-content space-between
-    //             margin-bottom 20px
-    //             h3
-    //               font-size 28px
-    //               color #333
-    //               font-weight bold
-    //           .score
-    //             span 
-    //               padding-left 20px
-    //           .pricAddDis
-    //             display flex
-    //             justify-content space-between
-    //             margin-top 20px
-    //             font-size 24px
-    //             .price
-    //               color #666
-    //             .distance
-    //               color #999
-    //       .reductionContainer
-    //         display flex
-    //         margin-top 20px
-    //         height 138px
-    //         .left
-    //           height 100%
-    //           width 130px
-    //         .reduction
-    //           flex 1
-    //           display flex
-    //           width 138px
-    //           padding-left 20px
-    //           flex-direction column
-    //           justify-content space-between
-    //           .reductionInfo
-    //             border-top 1px dashed #FCFCFC
-    //             padding-top 10px
+    // // 综合排序 筛选
+    // .screen
+    //   height 80px
+    //   width 100%
+    //   display flex
+    //   justify-content space-around
+    //   align-items center
+    //   color #666
+    //   background-color #fff
+    //   position fixed
+    //   top 80px
+    //   z-index 100
+    //   div
+    //     font-size 28px
+    //     color #666
 
           
 

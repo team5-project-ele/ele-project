@@ -11,9 +11,15 @@ import Recommendation from '../pages/Found/Recommendation'
 import Periphery from '../pages/Found/Periphery'
 import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
+<<<<<<< HEAD
 import  ShippingAddress from '../pages/Personal/ShippingAddress'
 import MyCustomerService from '../pages/Personal/MyCustomerService'
 import Rule from '../pages/Personal/Rule'
+=======
+import Search from '../pages/Home/Search'
+import RestaurantInfo from '../components/OrderInfo/RestaurantInfo'
+import Details from '../components/Details'
+>>>>>>> c0e55c3866b5b2d28456c0b73244a9cad87a5d61
 
 export default [
   
@@ -26,27 +32,33 @@ export default [
     component: Found,
   },
   {
-    path:'/found/recommend',
-    component:Recommend,
+    path: '/found/recommend',
+    component: Recommend,
     meta: {
       isHideFooter: true // 是否隐藏底部
     }
   },
   {
-    path:'/found/recommendation',
-    component:Recommendation,
+    path: '/found/recommendation',
+    component: Recommendation,
     meta: {
       isHideFooter: true // 是否隐藏底部
     }
   },
   {
-    path:'/found/periphery',
-    component:Periphery,
+    path: '/found/periphery',
+    component: Periphery,
     meta: {
       isHideFooter: true // 是否隐藏底部
     }
   },
-
+  {
+    path: '/found/details',
+    component: Details,
+    meta: {
+      isHideFooter: true
+    }
+  },
   {
     path: '/order',
     component: Order
@@ -113,6 +125,12 @@ export default [
   {
     path: '/orderinfo',
     component: OrderInfo,
+    children: [
+      {
+        path: '/orderinfo/restaurantinfo',
+        component: RestaurantInfo
+      }
+    ],
     meta: {
       isHideFooter: true
     }
@@ -124,5 +142,9 @@ export default [
   {
     path: '/categorystore',
     component: CategoryStore
+  },
+  {
+    path: '/search',
+    component: Search
   }
 ]

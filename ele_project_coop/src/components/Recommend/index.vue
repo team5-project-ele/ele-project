@@ -35,75 +35,23 @@
       </div>
     </div>
     <!-- 产品展示区 -->
-    <ul class="exhibition">
-      <li class="exhibitionItem">
-        <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
-        <p class="title">PS4</p>
-      </li>
-      <li class="exhibitionItem">
-        <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
-        <p class="title">PS4</p>
-      </li>
-      <li class="exhibitionItem">
-        <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
-        <p class="title">PS4</p>
-      </li>
-      <li class="exhibitionItem">
-        <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
-        <p class="title">PS4</p>
-      </li>
-      <li class="exhibitionItem">
-        <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
-        <p class="title">PS4</p>
-      </li>
-      <li class="exhibitionItem">
-        <img src="./image/crwugjcwol.jpg" alt="后期遍历生成">
-        <p class="title">PS4</p>
+    <ul class="exhibition" >
+      <li class="exhibitionItem" v-for="(item,index) in operatingList.list" @click="showItem" :key="item.id">
+        <img :src="(item.image)" alt="">
+        <p class="title">{{item.title}}</p>
       </li>
     </ul>
      <!-- 产品兑换区 -->
      <ul class="exchange">
-      <li class="exchangeItem">
+      <li class="exchangeItem" v-for="(item,index) in goldCoinMallList.list" :key="item.id">
         <div class="ImgItem">
-          <img src="./image/sromdt.jpg" alt="后期遍历得来">
+          <img :src="(item.image)" alt="">
         </div>
         <!-- 文字价格兑换区 -->
         <div class="titleItem">
-          <p class="title">智能扫地机器人</p>
-          <p class="price">9金币</p>
-          <button class="btn">兑换</button>
-        </div>
-      </li>
-      <li class="exchangeItem">
-        <div class="ImgItem">
-          <img src="./image/sromdt.jpg" alt="后期遍历得来">
-        </div>
-        <!-- 文字价格兑换区 -->
-        <div class="titleItem">
-          <p class="title">智能扫地机器人</p>
-          <p class="price">9金币</p>
-          <button class="btn">兑换</button>
-        </div>
-      </li>
-      <li class="exchangeItem">
-        <div class="ImgItem">
-          <img src="./image/sromdt.jpg" alt="后期遍历得来">
-        </div>
-        <!-- 文字价格兑换区 -->
-        <div class="titleItem">
-          <p class="title">智能扫地机器人</p>
-          <p class="price">9金币</p>
-          <button class="btn">兑换</button>
-        </div>
-      </li>
-      <li class="exchangeItem">
-        <div class="ImgItem">
-          <img src="./image/sromdt.jpg" alt="后期遍历得来">
-        </div>
-        <!-- 文字价格兑换区 -->
-        <div class="titleItem">
-          <p class="title">智能扫地机器人</p>
-          <p class="price">9金币</p>
+          <p class="title">
+            {{item.title}}</p>
+          <p class="price">{{item.titleDownTxt}}</p>
           <button class="btn">兑换</button>
         </div>
       </li>
@@ -112,12 +60,35 @@
   </div>
 </template>
 <script>
+import {mapState,mapActions} from 'vuex'
 export default{
   name:'Recommend',
   data(){
     return{
 
     }
+  },
+  mounted (){
+    this.getOperatingListAction()
+    this.getGoldCoinMallListAction()
+  },
+  methods: {
+    ...mapActions({
+      getOperatingListAction:'getOperatingListAction',
+      getGoldCoinMallListAction:'getGoldCoinMallListAction'
+    }),
+    // 点击查看详情
+    showItem(){
+      this.$router.push({
+        path:'/found/details'
+      })
+    }
+  },
+  computed: {
+    ...mapState({
+      operatingList: state => state.operatingModule.operatingList,
+      goldCoinMallList: state => state.goldCoinMallModule.goldCoinMallList
+    })
   }
 }
 </script>
@@ -236,7 +207,7 @@ export default{
     justify-content space-between
     .exchangeItem
       width 50%
-      height 400px
+      height 395px
       margin 10px 0
       box-sizing border-box
       border-bottom 1px solid #ededed
@@ -256,10 +227,14 @@ export default{
         .title
           height 60px
           line-height 60px
-          font-size 28px
+          font-size 26px
+          // 单行文本溢出隐藏显示省略号
+          overflow hidden
+          white-space nowrap
+          text-overflow ellipsis  
         .price
-          height 35px
-          line-height 30px  
+          height 45px
+          line-height 45px  
           font-size 24px
           color red
         .btn

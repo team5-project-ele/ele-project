@@ -2,13 +2,13 @@
   <div>
     <div class="categoryStore">
       <ul class="StoreList">
-      <li class="storeItem">
+      <li v-show="(restaurantCategoryIds === undefined || restaurantCategoryIds.length === 0) ? 'true' : restaurantCategoryIds.includes(storeItem.restaurant.flavors[0].id)"  class="storeItem" v-for="storeItem in storeList" :key="storeItem.restaurant.id">
         <!-- 商家详情 -->
-        <div class="storeDsec">
-          <div class="image"><img src="https://cube.elemecdn.com/2/12/5e267e4bceb9bcabd61e1cf13a34aJPEG.JPEG"></div>
+        <div class="storeDsec" >
+          <div class="image"><img :src="storeItem.restaurant.image"></div>
           <div class="desc">
             <div class="title">
-              <h3>川锦汇麻辣拌</h3>
+              <h3>{{storeItem.restaurant.name}}</h3>
               <div class="iconfont icon-shenglvehao"></div>
             </div>
             <!-- 评分 -->
@@ -21,12 +21,12 @@
                 void-icon="star"
                 void-color="#eee"
               />
-              <span>4.9 月售3000单</span>
+              <span>{{storeItem.restaurant.rating}} 月售{{storeItem.restaurant.recent_order_num}}单</span>
             </div>
             <!-- 价格和路程 -->
             <div class="pricAddDis">
-              <div class="price">￥12起送 | 配送￥1</div>
-              <div class="distance">1.65km | 61分钟</div>
+              <div class="price">￥{{storeItem.restaurant.piecewise_agent_fee.rules[0].price}}起送 | {{storeItem.restaurant.piecewise_agent_fee.description}}</div>
+              <div class="distance">{{parseFloat(storeItem.restaurant.distance * 0.001).toFixed(2)}}km | {{storeItem.restaurant.order_lead_time}}分钟</div>
             </div>
           </div>
         </div>
@@ -35,216 +35,64 @@
           <div class="left"></div>
           <div class="reduction">
             <div>
-              <van-tag  color="#fff" text-color="#666" style="border:1px solid rgb(221, 221, 221)">麻辣烫/关东煮</van-tag>
+              <van-tag  color="#fff" text-color="#666" style="border:1px solid rgb(221, 221, 221)">{{storeItem.restaurant.flavors[0].name}}</van-tag>
             </div>
             <div class="reductionInfo" >
-              <div style="margin-bottom:5px"><van-tag type="danger" style="margin-right:10px">减</van-tag>满30元减10元</div>
-              <div class="van-ellipsis"><van-tag type="warning" style="margin-right:10px">保</van-tag>该商户食品安全已由国泰产险承担，食品安全有保障</div>
+              <div style="margin-bottom:5px" class="van-ellipsis" v-for="active in storeItem.restaurant.activities" :key="active.id">
+                <van-tag :type="active.icon_name === '减'? 'danger' : active.icon_name === '特'? 'warning' : 'success' " style="margin-right:10px">{{active.icon_name}}</van-tag>
+                {{active.tips}}
+              </div>
+              <div style="margin-bottom:5px" class="van-ellipsis" v-for="item in storeItem.restaurant.supports" :key="item.id">
+                <van-tag color="#666" text-color="#fff" style="margin-right:10px">{{item.icon_name}}</van-tag>
+                {{item.description}}
+              </div>
             </div>
           </div>
         </div>
       </li>
-      <li class="storeItem">
-        <!-- 商家详情 -->
-        <div class="storeDsec">
-          <div class="image"><img src="https://cube.elemecdn.com/2/12/5e267e4bceb9bcabd61e1cf13a34aJPEG.JPEG"></div>
-          <div class="desc">
-            <div class="title">
-              <h3>川锦汇麻辣拌</h3>
-              <div class="iconfont icon-shenglvehao"></div>
-            </div>
-            <!-- 评分 -->
-            <div class="score">
-              <van-rate
-                v-model="value"
-                :size="6"
-                :gutter="8"
-                color="#ffd21e"
-                void-icon="star"
-                void-color="#eee"
-              />
-              <span>4.9 月售3000单</span>
-            </div>
-            <!-- 价格和路程 -->
-            <div class="pricAddDis">
-              <div class="price">￥12起送 | 配送￥1</div>
-              <div class="distance">1.65km | 61分钟</div>
-            </div>
-          </div>
-        </div>
-        <!-- 满减区域 -->
-        <div class="reductionContainer">
-          <div class="left"></div>
-          <div class="reduction">
-            <div>
-              <van-tag  color="#fff" text-color="#666" style="border:1px solid rgb(221, 221, 221)">麻辣烫/关东煮</van-tag>
-            </div>
-            <div class="reductionInfo" >
-              <div style="margin-bottom:5px"><van-tag type="danger" style="margin-right:10px">减</van-tag>满30元减10元</div>
-              <div class="van-ellipsis"><van-tag type="warning" style="margin-right:10px">保</van-tag>该商户食品安全已由国泰产险承担，食品安全有保障</div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="storeItem">
-        <!-- 商家详情 -->
-        <div class="storeDsec">
-          <div class="image"><img src="https://cube.elemecdn.com/2/12/5e267e4bceb9bcabd61e1cf13a34aJPEG.JPEG"></div>
-          <div class="desc">
-            <div class="title">
-              <h3>川锦汇麻辣拌</h3>
-              <div class="iconfont icon-shenglvehao"></div>
-            </div>
-            <!-- 评分 -->
-            <div class="score">
-              <van-rate
-                v-model="value"
-                :size="6"
-                :gutter="8"
-                color="#ffd21e"
-                void-icon="star"
-                void-color="#eee"
-              />
-              <span>4.9 月售3000单</span>
-            </div>
-            <!-- 价格和路程 -->
-            <div class="pricAddDis">
-              <div class="price">￥12起送 | 配送￥1</div>
-              <div class="distance">1.65km | 61分钟</div>
-            </div>
-          </div>
-        </div>
-        <!-- 满减区域 -->
-        <div class="reductionContainer">
-          <div class="left"></div>
-          <div class="reduction">
-            <div>
-              <van-tag  color="#fff" text-color="#666" style="border:1px solid rgb(221, 221, 221)">麻辣烫/关东煮</van-tag>
-            </div>
-            <div class="reductionInfo" >
-              <div style="margin-bottom:5px"><van-tag type="danger" style="margin-right:10px">减</van-tag>满30元减10元</div>
-              <div class="van-ellipsis"><van-tag type="warning" style="margin-right:10px">保</van-tag>该商户食品安全已由国泰产险承担，食品安全有保障</div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="storeItem">
-        <!-- 商家详情 -->
-        <div class="storeDsec">
-          <div class="image"><img src="https://cube.elemecdn.com/2/12/5e267e4bceb9bcabd61e1cf13a34aJPEG.JPEG"></div>
-          <div class="desc">
-            <div class="title">
-              <h3>川锦汇麻辣拌</h3>
-              <div class="iconfont icon-shenglvehao"></div>
-            </div>
-            <!-- 评分 -->
-            <div class="score">
-              <van-rate
-                v-model="value"
-                :size="6"
-                :gutter="8"
-                color="#ffd21e"
-                void-icon="star"
-                void-color="#eee"
-              />
-              <span>4.9 月售3000单</span>
-            </div>
-            <!-- 价格和路程 -->
-            <div class="pricAddDis">
-              <div class="price">￥12起送 | 配送￥1</div>
-              <div class="distance">1.65km | 61分钟</div>
-            </div>
-          </div>
-        </div>
-        <!-- 满减区域 -->
-        <div class="reductionContainer">
-          <div class="left"></div>
-          <div class="reduction">
-            <div>
-              <van-tag  color="#fff" text-color="#666" style="border:1px solid rgb(221, 221, 221)">麻辣烫/关东煮</van-tag>
-            </div>
-            <div class="reductionInfo" >
-              <div style="margin-bottom:5px"><van-tag type="danger" style="margin-right:10px">减</van-tag>满30元减10元</div>
-              <div class="van-ellipsis"><van-tag type="warning" style="margin-right:10px">保</van-tag>该商户食品安全已由国泰产险承担，食品安全有保障</div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="storeItem">
-        <!-- 商家详情 -->
-        <div class="storeDsec">
-          <div class="image"><img src="https://cube.elemecdn.com/2/12/5e267e4bceb9bcabd61e1cf13a34aJPEG.JPEG"></div>
-          <div class="desc">
-            <div class="title">
-              <h3>川锦汇麻辣拌</h3>
-              <div class="iconfont icon-shenglvehao"></div>
-            </div>
-            <!-- 评分 -->
-            <div class="score">
-              <van-rate
-                v-model="value"
-                :size="6"
-                :gutter="8"
-                color="#ffd21e"
-                void-icon="star"
-                void-color="#eee"
-              />
-              <span>4.9 月售3000单</span>
-            </div>
-            <!-- 价格和路程 -->
-            <div class="pricAddDis">
-              <div class="price">￥12起送 | 配送￥1</div>
-              <div class="distance">1.65km | 61分钟</div>
-            </div>
-          </div>
-        </div>
-        <!-- 满减区域 -->
-        <div class="reductionContainer">
-          <div class="left"></div>
-          <div class="reduction">
-            <div>
-              <van-tag  color="#fff" text-color="#666" style="border:1px solid rgb(221, 221, 221)">麻辣烫/关东煮</van-tag>
-            </div>
-            <div class="reductionInfo" >
-              <div style="margin-bottom:5px"><van-tag type="danger" style="margin-right:10px">减</van-tag>满30元减10元</div>
-              <div class="van-ellipsis"><van-tag type="warning" style="margin-right:10px">保</van-tag>该商户食品安全已由国泰产险承担，食品安全有保障</div>
-            </div>
-          </div>
-        </div>
-      </li> 
     </ul>
     </div>
   </div>
 </template>
 <script>
+// isShow(storeItem.restaurant.flavors[0].id)
+// restaurantCategoryIds.length !== 0 ? restaurantCategoryIds.includes(storeItem.restaurant.flavors[0].id) : 'true'
 import { Rate ,Tag} from 'vant'
+import {reqStoreList} from '../../api/index'
 export default {
   name:'storeList',
+  props: ['restaurantCategoryIds'],
   data () {
     return {
       value:3, // 评分
+      storeList:[], // 商家列表数组数据
     }
-  },
-  methods: {
-     
   },
   components: {
     [Rate.name]: Rate,
     [Tag.name]: Tag,
-  }
+  },
+  mounted () {
+    this.getStoreList()
+  },
+  methods: {
+    //  发送请求，获取商家列表数据
+    async getStoreList () {
+      const result = await reqStoreList()
+      this.storeList = result.data.items
+    },
+
+  },
+
+  
 }
 </script>
 <style scoped lang='stylus'>
    // 商家列表
     .categoryStore
-      // position fixed
-      // top 160px
-      // width 100%
-      margin-top 160px
+      margin-top 40px
       .StoreList
         margin 20px
-        // position absolute
-        // top 160px
         .storeItem
           border-bottom 1px solid  #FCFCFC
           // border-bottom 1px solid  red
@@ -256,7 +104,7 @@ export default {
             .image
               width 130px
               height 130px
-              border 1px solid #000
+              border 1px solid rgba(0,0,0,.1)
               margin-right 20px
               img 
                 width 100%
@@ -273,6 +121,7 @@ export default {
                   color #333
                   font-weight bold
               .score
+                text-align left 
                 span 
                   padding-left 20px
               .pricAddDis
@@ -287,7 +136,7 @@ export default {
           .reductionContainer
             display flex
             margin-top 20px
-            height 138px
+            // height 138px
             .left
               height 100%
               width 130px
@@ -296,6 +145,7 @@ export default {
               display flex
               width 138px
               padding-left 20px
+              text-align left
               flex-direction column
               justify-content space-between
               .reductionInfo
