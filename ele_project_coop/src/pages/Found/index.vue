@@ -55,23 +55,26 @@ export default {
   name: 'Found',
   data(){
     return {
-
     }
   },
   mounted (){
     // 调用action，拿到数据
     this.getFirstScreenDataAction()
-    console.log(this.firstScreenData)
+    // console.log(this.firstScreenData)
   },
   methods:{
     ...mapActions({
       getFirstScreenDataAction:'getFirstScreenDataAction'
     }),
     // 跳转到指定文件
-    godetails(a){
-      // console.log(a)
+    godetails(navIndex){
+      // console.log(navIndex)
       this.$router.push({
-        path:'/found/details'
+        path:'/found/details',
+        query:{
+          navIndex  
+        }
+        
       })
     },
     //去金币商城
@@ -96,7 +99,6 @@ export default {
   computed:{
     ...mapState({
       firstScreenData: state => state.firstScreenModule.firstScreenData
-
     })
   }
 }
@@ -232,20 +234,24 @@ export default {
     display -webkit-box
     overflow-x scroll
     -webkit-overflow-scrolling touch
-    padding-left 30px    
+    padding-left 30px 
     .grid-content 
       border-radius: 4px;
       width 220px
       height 240px
       margin-right 16px
       img
-        width 100%
-        height 100%
+        width 95%
+        height 100% 
+        border 1px solid #ededed
       .title
         font-size 24
         font-size 24px
         margin 20px 0
-        color #333   
+        color #333
+        overflow hidden
+        white-space nowrap
+        text-overflow ellipsis    
       .pirce
         display flex
         height 48px

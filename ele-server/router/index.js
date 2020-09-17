@@ -11,10 +11,10 @@ let HotSearch = require('../datas/yifei/yifei_search/hotSearch.json')
 //lzm
 let orderLists = require('../datas/orderLists/orders.json')
 // zhangrui
-let operatingList = require('../datas/zhangrui_goldCoinMall/operating.json')
-let GoldCoinMall = require('../datas/zhangrui_goldCoinMall/goldCoinMall.json')
-let firstScreen = require('../datas/zhangrui_firstScreen/firstScreen.json')
-let indexIsfirst = require('../datas/zhangrui_firstScreen/indexIsfirst.json')
+let operatingList = require('../datas/zhangrui/zhangrui_goldCoinMall/operating.json')
+let GoldCoinMall = require('../datas/zhangrui/zhangrui_goldCoinMall/goldCoinMall.json')
+let firstScreen = require('../datas/zhangrui/zhangrui_firstScreen/firstScreen.json')
+let indexIsfirst = require('../datas/zhangrui/zhangrui_firstScreen/indexIsfirst.json')
 
 
 router.get('/test', (ctx, next) => { 

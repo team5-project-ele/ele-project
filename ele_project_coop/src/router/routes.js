@@ -4,7 +4,7 @@ import Order from '../pages/Order'
 import Personal from '../pages/Personal'
 import Detail from '../pages/Order/Detail'
 import Recommend from '../components/Recommend'
-import Recommendation from '../pages/Found/Recommendation'
+import Recommendation from '../components/Recommendation'
 import Periphery from '../pages/Found/Periphery'
 import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
@@ -33,7 +33,7 @@ export default [
     component: Recommendation,
     meta: {
       isHideFooter: true // 是否隐藏底部
-    }
+    },
   },
   {
     path: '/found/periphery',
