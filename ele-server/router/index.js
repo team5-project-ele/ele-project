@@ -17,13 +17,10 @@ let firstScreen = require('../datas/zhangrui_firstScreen/firstScreen.json')
 let indexIsfirst = require('../datas/zhangrui_firstScreen/indexIsfirst.json')
 
 
-<<<<<<< HEAD
 let goldcoin = require('../datas/zhangtao_Personal/goldcoin.json')
 
-router.get('/test', (ctx, next) => {
-=======
+
 router.get('/test', (ctx, next) => { 
->>>>>>> c0e55c3866b5b2d28456c0b73244a9cad87a5d61
   ctx.body = 1
 })
 
@@ -32,7 +29,6 @@ router.get('/getFirstPage', (ctx, next) => {
   ctx.body = FirstPage
 })
 
-<<<<<<< HEAD
 // 获取验证码---zhangtao
 router.get('/getcaptcha', (ctx,next) => {
   let str = '1234567890'
@@ -49,11 +45,7 @@ router.get('/getgoldcoin', (ctx,next) => {
   ctx.body = goldcoin
 })
 
-// 获取商家商品详情信息 ---yifei
-router.get('/categoryStore',(ctx,next)=>{
-  ctx.body = CategoryStore
-// 获取商品详情信息 ---yifei
-=======
+
 // 获取美食分类信息 ---yifei
 router.get('/categoryStore', (ctx, next) => {
   ctx.body = CategoryStore
@@ -72,7 +64,6 @@ router.get('/hotSearch', (ctx, next) => {
 //获取金币商城的商品操作数据---zhangrui
 router.get('/getOperating',(ctx,next)=>{
   ctx.body = operatingList
->>>>>>> c0e55c3866b5b2d28456c0b73244a9cad87a5d61
 })
 
 // 获取金币商城的全部商品数据 --zhangrui

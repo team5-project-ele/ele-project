@@ -20,10 +20,8 @@ export const reqOrderList = () => ajax.get(`/orderlist`)
 // 获取订单商品的详情
 export const reqOrderItem = (id) => ajax.get(`/getorderitems?id=${id}`)
 
-<<<<<<< HEAD
 //获取个人中心下的金币的接口
 export const reqGetGoldCoin = () => ajax.get(`/getgoldcoin`)
-=======
 // 商家列表信息---艺飞
 export const reqStoreList = ()=> ajax.get(`/storeList`)
 
@@ -36,4 +34,3 @@ export const reqFirstScreen = () => ajax.get('/getfirstScreen')
 export const reqIndexIsfirst = () =>ajax.get('/getindexIsfirst')
 
 
->>>>>>> c0e55c3866b5b2d28456c0b73244a9cad87a5d61
