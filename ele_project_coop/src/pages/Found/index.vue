@@ -7,7 +7,7 @@
         <p class="title">金币商城</p>
         <p class="tips">0元好物在这里</p>
         <img class="icon" src="./image/1.webp">
-      </div>
+      </div> 
       <!-- 右侧推荐和优惠 -->
       <div class="right">
         <!-- 上面推荐 -->
@@ -35,28 +35,12 @@
       <p class="tips">金币换豪礼</p>
       <!-- 轮播图 -->
       <div class="gutter">
-        <div class="grid-content">
-          <img src="data:image/jpeg;base64,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" alt="">  
-          <p class="title">PS4抽奖</p>
+        <div class="grid-content"  v-for="(item,index) in firstScreenData" @click="godetails(index)" :key="index">
+          <img :src="(item.image_hash)" alt="">  
+          <p class="title">{{item.title}}</p>
           <div class="pirce">
-            <span class="coin">200金币</span>
-            <s class="original">￥2299</s>
-          </div>
-        </div>
-          <div class="grid-content">
-          <img src="data:image/jpeg;base64,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" alt="">  
-          <p class="title">JBL耳机抽奖</p>
-          <div class="pirce">
-            <span class="coin">200金币</span>
-            <s class="original">￥599</s>
-          </div>
-        </div>
-          <div class="grid-content">
-          <img src="data:image/jpeg;base64,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" alt="">  
-          <p class="title spill">Beats头戴式耳机抽奖</p>
-          <div class="pirce">
-            <span class="coin">150金币</span>
-            <s class="original">￥759</s>
+            <span class="coin">{{item.points_required}}金币</span>
+            <s class="original">￥{{item.original_price}}</s>
           </div>
         </div>
       </div>
@@ -66,6 +50,7 @@
   </div> 
 </template>
 <script>
+import {mapState,mapActions} from 'vuex'
 export default {
   name: 'Found',
   data(){
@@ -73,7 +58,22 @@ export default {
 
     }
   },
+  mounted (){
+    // 调用action，拿到数据
+    this.getFirstScreenDataAction()
+    console.log(this.firstScreenData)
+  },
   methods:{
+    ...mapActions({
+      getFirstScreenDataAction:'getFirstScreenDataAction'
+    }),
+    // 跳转到指定文件
+    godetails(a){
+      // console.log(a)
+      this.$router.push({
+        path:'/found/details'
+      })
+    },
     //去金币商城
     gorecommend(){
       this.$router.push({
@@ -92,6 +92,12 @@ export default {
         path:'/found/periphery'
       })
     } 
+  },
+  computed:{
+    ...mapState({
+      firstScreenData: state => state.firstScreenModule.firstScreenData
+
+    })
   }
 }
 </script>
@@ -100,6 +106,9 @@ export default {
 *
   margin 0
   padding 0
+  ::-webkit-scrollbar {
+   height: 0;
+ }
 .goldCoinContainer
   height calc(100vh)
   background #f5f5f5
@@ -219,9 +228,10 @@ export default {
     color #999
     margin-bottom 30px
   .gutter
-    display flex
     height 380px
-    margin-bottom 30px
+    display -webkit-box
+    overflow-x scroll
+    -webkit-overflow-scrolling touch
     padding-left 30px    
     .grid-content 
       border-radius: 4px;

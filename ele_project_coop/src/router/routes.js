@@ -10,6 +10,8 @@ import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
 import Search from '../pages/Home/Search'
 import RestaurantInfo from '../components/OrderInfo/RestaurantInfo'
+import Details from '../components/Details'
+
 export default [
   {
     path: '/home',
@@ -40,7 +42,13 @@ export default [
       isHideFooter: true // 是否隐藏底部
     }
   },
-
+  {
+    path: '/found/details',
+    component: Details,
+    meta: {
+      isHideFooter: true
+    }
+  },
   {
     path: '/order',
     component: Order

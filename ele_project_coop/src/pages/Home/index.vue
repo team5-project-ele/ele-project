@@ -4,9 +4,11 @@
     <!-- 头部定位和搜索框 -->
     <div class="header">
       <div class="address el-icon-location-outline">华北理工大学</div>
-      <div class="search" @click="toPath('/search')">
-        <span class=" iconfont icon--search">搜索饿了么商家，商品名称</span>
-      </div>
+      <van-sticky>
+        <div class="search" @click="toPath('/search')">
+          <span class=" iconfont icon--search">搜索饿了么商家，商品名称</span>
+        </div>
+      </van-sticky>
     </div>
     <div class="firstPageContext">
       <!-- 分类区 -->
@@ -41,6 +43,7 @@
       <!-- 推荐商家 -->
       <div class="recommedStore">
         <span class="store">推荐商家</span>
+        <van-sticky :offset-top="56"><Screen /></van-sticky>
         <StoreList />
       </div>
     </div>
@@ -49,13 +52,16 @@
 </template>
 <script>
 import {reqFirstPageInfo} from '../../api/index'
-import { Search ,Button } from 'vant'
+import { Search ,Button ,Sticky } from 'vant'
 import StoreList from '../../components/StoreList'
+import Screen from '../../components/Screen'
 export default {
   name:'Home',
   components: {
     [Search.name]: Search,
-    StoreList
+    [Sticky .name]: Sticky ,
+    StoreList,
+    Screen
   },
   data () {
     return {
@@ -81,21 +87,31 @@ export default {
 <style scoped lang='stylus' rel='stylesheet/stylus'>
   .header
     background #0091FF
-    padding 20px
     .address
       font-size 35px
       font-weight bold
       color #ffffff
       height 40px
+      padding 30px 0 20px 20px
     .search
-      width 99%
-      height 72px
+      width 100%
+      height 112px
       text-align center
       line-height 72px
       color #999
       font-size 28px
+      border 20px solid #0091FF
+      box-sizing border-box
       background-color #ffffff
-      margin-top 20px 
+      position relative
+      &::before
+        content ''
+        position absolute
+        height 2px
+        width 110%
+        left -20px
+        top -23px
+        background-color #0091FF
   .firstPageContext
     margin 0 20px
 		// 分类区

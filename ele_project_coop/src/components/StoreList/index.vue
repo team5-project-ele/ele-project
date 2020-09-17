@@ -90,7 +90,7 @@ export default {
 <style scoped lang='stylus'>
    // 商家列表
     .categoryStore
-      margin-top 160px
+      margin-top 40px
       .StoreList
         margin 20px
         .storeItem
