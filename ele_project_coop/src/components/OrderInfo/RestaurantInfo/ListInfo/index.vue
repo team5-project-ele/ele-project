@@ -130,6 +130,8 @@ export default {
 <style lang="stylus" scoped>
 .Container
   width calc(100vw - 220px)
+  height calc(100vh - 200px)
+  overflow auto
   padding 0 20px
   .rightCont
     width 100%

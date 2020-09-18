@@ -105,8 +105,9 @@ export default{
     line-height 100px
     background #fff
     z-index 100
+    width 100%
     .conic
-      width 375px
+      width 50%
       height 100px
       &:after
         position absolute
