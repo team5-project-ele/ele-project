@@ -52,13 +52,12 @@
 </template>
 
 <script>
-import { Button, PullRefresh } from 'vant'
+import { Button } from 'vant'
 import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Order',
   components: {
-    [Button.name]: Button,
-    [PullRefresh.name]: PullRefresh
+    [Button.name]: Button
   },
   data () {
     return {
@@ -102,7 +101,6 @@ export default {
 .orderContainer
   padding-top 10px
   width 100%
-  height 100%
   background-color rgb(245, 245, 245)
   .orderList
     width 100%
