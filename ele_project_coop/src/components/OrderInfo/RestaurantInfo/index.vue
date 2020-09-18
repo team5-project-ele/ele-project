@@ -74,44 +74,69 @@
     <div class="content">
       <van-sticky class="stickyContainer"
                   :offset-top="50">
-        <ul class="sideContainer">
-          <li class="sideItem activeClass">
+        <van-sidebar v-model="activeKey"
+                     class="sideContainer">
+          <!-- <li class="sideItem activeClass">
             <span>买过</span>
-          </li>
-          <li class="sideItem">
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="买过" />
+          <!-- <li class="sideItem">
             <span>收藏有礼</span>
-          </li>
-          <li class="sideItem">
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="收藏有礼" />
+          <!-- <li class="sideItem">
             <span>热销</span>
-          </li>
-          <li class="sideItem">
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="热销" />
+          <!-- <li class="sideItem">
             <span>优惠</span>
-          </li>
-          <li class="sideItem">
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="优惠" />
+          <!-- <li class="sideItem">
             <span>必选品</span>
-          </li>
-          <li class="sideItem">
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="必选品" />
+          <!-- <li class="sideItem">
             <span>干粮</span>
-          </li>
-          <li class="sideItem">
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="干粮" />
+          <!-- <li class="sideItem">
             <span>滋溜</span>
-          </li>
-          <li class="sideItem">
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="滋溜" />
+          <!-- <li class="sideItem">
             <span>小吃</span>
-          </li>
-          <li class="sideItem">
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="小吃" />
+          <!-- <li class="sideItem">
             <span>面条</span>
-          </li>
-          <li class="sideItem">
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="面条" />
+          <!-- <li class="sideItem">
             <span>饮料</span>
-          </li>
-          <li class="sideItem">
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="饮料" />
+          <!-- <li class="sideItem">
             <span>卤菜</span>
-          </li>
-          <li class="sideItem">
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="卤菜" />
+          <!-- <li class="sideItem">
             <span>消费纠纷和解员</span>
-          </li>
-        </ul>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="消费纠纷和解员" />
+        </van-sidebar>
       </van-sticky>
       <van-sticky class="stickyContainer2"
                   :offset-top="50">
@@ -219,17 +244,11 @@ export default {
       margin-bottom 100px
       .sideContainer
         width 180px
-        background-color #f5f5f5
         overflow auto
         height calc(100vh - 200px)
         .sideItem
-          padding 20px 30px
-          line-height 45px
-          margin-bottom 20px
           font-size 26px
           color #666
-          &.activeClass
-            background-color #fff
     .stickyContainer2
       width calc(100vw - 180px)
       margin-bottom 100px
