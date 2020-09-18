@@ -3,7 +3,7 @@
   <div id="firstPageContainer">
     <!-- 头部定位和搜索框 -->
     <div class="header">
-      <div class="address el-icon-location-outline">华北理工大学</div>
+      <div class="address iconfont icon-icon-dingwei">华北理工大学 <span class="iconfont icon-Downarrow-filled"></span></div>
       <van-sticky>
         <div class="search" @click="toPath('/search')">
           <div class="sea">
@@ -72,6 +72,7 @@ export default {
   },
   mounted () {
     this.getFirstPage()
+    this.$store.dispatch('getStoreListAction')
   },
   methods: {
     async getFirstPage () {
