@@ -71,25 +71,78 @@
         </ul>
       </div>
     </div>
-    <van-sticky class="stickyContainer"
-                :offset-top="50">
-      <van-sidebar class="sideContainer"
-                   v-model="activeKey">
-        <van-sidebar-item title="收藏有礼">
-
-        </van-sidebar-item>
-        <van-sidebar-item title="热销"></van-sidebar-item>
-        <van-sidebar-item title="优惠"></van-sidebar-item>
-        <van-sidebar-item title="必选品"></van-sidebar-item>
-        <van-sidebar-item title="干粮"></van-sidebar-item>
-        <van-sidebar-item title="滋溜"></van-sidebar-item>
-        <van-sidebar-item title="小吃"></van-sidebar-item>
-        <van-sidebar-item title="面条"></van-sidebar-item>
-        <van-sidebar-item title="饮料"></van-sidebar-item>
-        <van-sidebar-item title="卤菜"></van-sidebar-item>
-        <van-sidebar-item title="消费纠纷和解员"></van-sidebar-item>
-      </van-sidebar>
-    </van-sticky>
+    <div class="content">
+      <van-sticky class="stickyContainer"
+                  :offset-top="50">
+        <van-sidebar v-model="activeKey"
+                     class="sideContainer">
+          <!-- <li class="sideItem activeClass">
+            <span>买过</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="买过" />
+          <!-- <li class="sideItem">
+            <span>收藏有礼</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="收藏有礼" />
+          <!-- <li class="sideItem">
+            <span>热销</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="热销" />
+          <!-- <li class="sideItem">
+            <span>优惠</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="优惠" />
+          <!-- <li class="sideItem">
+            <span>必选品</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="必选品" />
+          <!-- <li class="sideItem">
+            <span>干粮</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="干粮" />
+          <!-- <li class="sideItem">
+            <span>滋溜</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="滋溜" />
+          <!-- <li class="sideItem">
+            <span>小吃</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="小吃" />
+          <!-- <li class="sideItem">
+            <span>面条</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="面条" />
+          <!-- <li class="sideItem">
+            <span>饮料</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="饮料" />
+          <!-- <li class="sideItem">
+            <span>卤菜</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="卤菜" />
+          <!-- <li class="sideItem">
+            <span>消费纠纷和解员</span>
+          </li> -->
+          <van-sidebar-item class="sideItem"
+                            title="消费纠纷和解员" />
+        </van-sidebar>
+      </van-sticky>
+      <van-sticky class="stickyContainer2"
+                  :offset-top="50">
+        <ListInfo />
+      </van-sticky>
+    </div>
 
     <div class="footer">
       <van-button round
@@ -97,11 +150,15 @@
                   color="#ff6000">去点必选品</van-button>
       <p>满25元减4元，满36元减5元，满39元减9元</p>
       <div class="cart">
-        <van-icon name="cart-circle"
-                  class="cart-icon" />
-        <div class="cart-left">
-          <p>未选购商品</p>
-          <p>另需配送费</p>
+        <div class="cartCar">
+          <div class="cart-icon">
+            <van-icon name="cart-circle"
+                      class="cart-i" />
+          </div>
+          <div class="cart-left">
+            <p>未选购商品</p>
+            <p>另需配送费</p>
+          </div>
         </div>
         <div class="cart-right">
           <p>下单前请点必选品</p>
@@ -115,7 +172,7 @@
 
 <script>
 import { Button, Sticky, Sidebar, SidebarItem } from 'vant'
-
+import ListInfo from './ListInfo'
 export default {
   name: 'App',
   data () {
@@ -124,6 +181,7 @@ export default {
     }
   },
   components: {
+    ListInfo,
     [Sticky.name]: Sticky,
     [Button.name]: Button,
     [Sidebar.name]: Sidebar,
@@ -180,6 +238,20 @@ export default {
               font-size 35px
             .sale-icon
               font-size 50px
+  .content
+    display flex
+    .stickyContainer
+      margin-bottom 100px
+      .sideContainer
+        width 180px
+        overflow auto
+        height calc(100vh - 200px)
+        .sideItem
+          font-size 26px
+          color #666
+    .stickyContainer2
+      width calc(100vw - 180px)
+      margin-bottom 100px
   .footer
     z-index 99
     position fixed
@@ -206,7 +278,22 @@ export default {
       display flex
       justify-content space-between
       align-items center
+      padding 0 20px
       color #999
-      .cart-icon
-        font-size 80px
+      .cartCar
+        display flex
+        align-items center
+        .cart-icon
+          font-size 80px
+          margin-right 30px
+          margin-top -30px
+          .cart-i
+            background-color rgba(61, 61, 63, 0.9)
+            border-radius 50%
+        .cart-left
+          margin-top 15px
+      .cart-right
+        color #fff
+        text-align center
+        margin-top 15px
 </style>

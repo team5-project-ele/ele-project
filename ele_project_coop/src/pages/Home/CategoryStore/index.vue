@@ -44,7 +44,6 @@ export default {
     //  发送请求，请求商家商品信息数据
     async getCategoryStore () {
       const result = await reqCategoryStore()
-      console.log(result.data.category)
       this.categoryStoreList = result.data.category
       this.categoryId = result.data.category[0].id
     },

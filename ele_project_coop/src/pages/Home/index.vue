@@ -6,7 +6,9 @@
       <div class="address el-icon-location-outline">华北理工大学</div>
       <van-sticky>
         <div class="search" @click="toPath('/search')">
-          <span class=" iconfont icon--search">搜索饿了么商家，商品名称</span>
+          <div class="sea">
+            <span class=" iconfont icon--search">搜索饿了么商家，商品名称</span>
+          </div>
         </div>
       </van-sticky>
     </div>
@@ -85,127 +87,126 @@ export default {
 }
 </script>
 <style scoped lang='stylus' rel='stylesheet/stylus'>
-  .header
-    background #0091FF
-    .address
-      font-size 35px
-      font-weight bold
-      color #ffffff
-      height 40px
-      padding 30px 0 20px 20px
-    .search
-      width 100%
-      height 112px
-      text-align center
-      line-height 72px
-      color #999
-      font-size 28px
-      border 20px solid #0091FF
-      box-sizing border-box
-      background-color #ffffff
-      position relative
-      &::before
-        content ''
-        position absolute
-        height 2px
-        width 110%
-        left -20px
-        top -23px
-        background-color #0091FF
-  .firstPageContext
-    margin 0 20px
-		// 分类区
-    .navFood
-      display flex
-      height 354px
-      flex-wrap wrap
-      margin-bottom 40px
-      .navItem
-        width 20%
-        display flex
-        flex-direction column
-        justify-content center
-        align-items center
-        img 
-          width 12vw
-          height 12vw
-        span
-          font-size 24px
-    // 活动栏内容区
-    .activityContext
-      .superMember
+  #firstPageContainer
+    height 100%
+    width 100%
+    .header
+      background #0091FF
+      .address
+        font-size 35px
+        font-weight bold
+        color #ffffff
+        height 40px
+        padding 30px 0 20px 20px
+      .search
         width 100%
-        height 80px
+        height 112px
+        color #999
+        background-color #0091FF
+        padding 20px 20px
+        box-sizing border-box
         display flex
-        justify-content space-between
-        align-items center
-        background-color #F7E3AD
-        .MemberLeft
-          margin-left 20px
+        .sea
+          background-color #fff
+          font-size 28px
+          height 72px
+          width 100%
+          text-align center
+          line-height 72px
+    .firstPageContext
+      margin 0 20px
+      // 分类区
+      .navFood
+        display flex
+        height 354px
+        flex-wrap wrap
+        margin-bottom 40px
+        .navItem
+          width 20%
+          display flex
+          flex-direction column
+          justify-content center
+          align-items center
           img 
-            vertical-align bottom
-            width 34px
-            height 34px
-          .super
-            color #644f1b
-            font-weight bold 
-            font-size 28px
-            margin 0 10px
-          .desc
+            width 12vw
+            height 12vw
+          span
+            font-size 24px
+      // 活动栏内容区
+      .activityContext
+        .superMember
+          width 100%
+          height 80px
+          display flex
+          justify-content space-between
+          align-items center
+          background-color #F7E3AD
+          .MemberLeft
+            margin-left 20px
+            img 
+              vertical-align bottom
+              width 34px
+              height 34px
+            .super
+              color #644f1b
+              font-weight bold 
+              font-size 28px
+              margin 0 10px
+            .desc
+              font-size 24px
+              color #644f1b
+          .openMember
             font-size 24px
             color #644f1b
-        .openMember
-          font-size 24px
-          color #644f1b
-      .setMeal
-        width 100%
-        margin-bottom 10px
-        background-color #f8f8f8
-        display flex
-        justify-content space-between
-        align-items center
-        height 220px
-        img
-          width 282px
-          height 188px
-          padding-right  40px
-        .mealDesc
-          padding-left  40px
-          h3
-            color #333333
-            font-weight bold
-            font-size 40px
-          .desc
-            color #777777
-            font-size 30px
-            margin 20px 0
-          .buy
-            color #af8260
-            font-size 28px
-    // 推荐商家
-    .recommedStore
-      position relative
-      width 100%
-      height 72px
-      text-align center
-      .store
+        .setMeal
+          width 100%
+          margin-bottom 10px
+          background-color #f8f8f8
+          display flex
+          justify-content space-between
+          align-items center
+          height 220px
+          img
+            width 282px
+            height 188px
+            padding-right  40px
+          .mealDesc
+            padding-left  40px
+            h3
+              color #333333
+              font-weight bold
+              font-size 40px
+            .desc
+              color #777777
+              font-size 30px
+              margin 20px 0
+            .buy
+              color #af8260
+              font-size 28px
+      // 推荐商家
+      .recommedStore
         position relative
-        line-height 72px
-        font-size 0.4rem
-        display inline-block
-        &::before,
-        &::after
-          position absolute
-          content ''
-          width 50px
-          height 1px
-          background-color #999
-        &::before
-          left -70px
-          top 36px
-        &::after
-          right -70px
-          top 36px
+        width 100%
+        height 72px
+        text-align center
+        .store
+          position relative
+          line-height 72px
+          font-size 0.4rem
+          display inline-block
+          &::before,
+          &::after
+            position absolute
+            content ''
+            width 50px
+            height 1px
+            background-color #999
+          &::before
+            left -70px
+            top 36px
+          &::after
+            right -70px
+            top 36px
 
 				
 </style>
