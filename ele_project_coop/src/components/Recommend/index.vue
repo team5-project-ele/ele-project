@@ -3,7 +3,7 @@
     <!-- 头部导航 -->
     <div class="header">
       <!-- 左侧的金币 -->
-      <div class="conic">
+      <div class="conic" >
         <a href="javascript:;">
           <i class="icon"></i>
           <span class="num">0</span>

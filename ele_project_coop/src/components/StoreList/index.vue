@@ -1,12 +1,13 @@
 <template>
   <div>
-    <div class="categoryStore">
+    <div class="categoryStore" v-if="uuid !== null">
       <ul class="StoreList">
       <li 
         v-show="(restaurantCategoryIds === undefined || restaurantCategoryIds.length === 0) ? 'true' : restaurantCategoryIds.includes(storeItem.restaurant.flavors[0].id)" 
         class="storeItem" 
         v-for="storeItem in storeList" 
         :key="storeItem.restaurant.id"
+        @click="toOrderInfo(storeItem.restaurant.id)"
       >
         <!-- 商家详情 -->
         <div class="storeDsec" >
@@ -22,6 +23,7 @@
                 :value="storeItem.restaurant.rating"
                 :size="6"
                 :gutter="8"
+                allow-half
                 color="#ffd21e"
                 void-icon="star"
                 void-color="#eee"
@@ -57,10 +59,16 @@
       </li>
     </ul>
     </div>
+    <div v-else class="isLogin">
+      <img src="https://fuss10.elemecdn.com/d/60/70008646170d1f654e926a2aaa3afpng.png">
+      <div class="num">没有结果</div>
+      <div class="log">登录后查看更多商家</div>
+      <van-button type="primary" @click="toLogin('/login')">登录</van-button>
+    </div>
   </div>
 </template>
 <script>
-import { Rate ,Tag} from 'vant'
+import { Rate ,Tag ,Empty ,Button } from 'vant'
 // import {reqStoreList} from '../../api/index'
 import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
@@ -71,11 +79,14 @@ export default {
       value:3, // 评分
       // storeList:[], // 商家列表数组数据
       newStoreList:[], // 筛选出来的商家裂变数据
+      uuid:null, // 用户唯一标识
     }
   },
   components: {
     [Rate.name]: Rate,
     [Tag.name]: Tag,
+    [Empty.name]: Empty,
+    [Button.name]: Button,
   },
   computed: {
     ...mapState({
@@ -84,6 +95,7 @@ export default {
   },
   mounted () {
     this.storeListSort()
+    this.uuid = localStorage.getItem('UUID_KEY')
   },
   methods: {
     
@@ -112,6 +124,16 @@ export default {
       this.storeList.sort(function (a,b) {
         return b.restaurant[val] - a.restaurant[val]
       })
+    },
+
+    // 跳转到详情页
+    toOrderInfo (navId) {
+      this.$router.push({ path: '/orderinfo', query:{listId:navId} })
+    },
+
+    // 去登录界面
+    toLogin (path) {
+      this.$router.push(path)
     }
   }
 
@@ -182,5 +204,19 @@ export default {
               .reductionInfo
                 border-top 1px dashed #FCFCFC
                 padding-top 10px
+    .isLogin
+      height 600px
+      img
+        width 200px
+        height 200px
+      .num
+        font-size 35px
+        color #6a6a6a
+        margin 20px 0
+      .log
+        color #999
+        margin 30px 0
+      
+      
 
 </style>

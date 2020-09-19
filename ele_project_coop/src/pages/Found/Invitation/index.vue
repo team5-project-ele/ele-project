@@ -1,6 +1,8 @@
 <template>
   <div class="nvitationContainer">
-    扫码邀请好友
+    <div class="imgContent">
+      <img src="./image/timg.jpg" alt="">
+    </div>
   </div>
 </template>
 <script>
@@ -10,7 +12,16 @@ export default {
 </script>
 <style lang="stylus">
 .nvitationContainer
-  background red
-  width 100px
-  height 100px
+  width 100%
+  height 100%
+  .header
+    width 100%
+    height 90px
+    background red
+  .imgContent
+    width 100%
+    height 100%
+    img 
+      width 100%
+      height 100%
 </style>

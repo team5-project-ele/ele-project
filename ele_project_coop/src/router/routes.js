@@ -8,10 +8,12 @@ import RedEnvelopes from '../pages/Personal/RedEnvelopes'
 import GoldCoin from '../pages/Personal/GoldCoin'
 import Recommend from '../components/Recommend'
 import Recommendation from '../components/Recommendation'
+import Invitation from '../pages/Found/Invitation'
+import Strteg from '../pages/Found/Strteg'
 import Periphery from '../pages/Found/Periphery'
 import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
-import  ShippingAddress from '../pages/Personal/ShippingAddress'
+import ShippingAddress from '../pages/Personal/ShippingAddress'
 import MyCustomerService from '../pages/Personal/MyCustomerService'
 import Rule from '../pages/Personal/Rule'
 import Search from '../pages/Home/Search'
@@ -20,7 +22,7 @@ import PersonalInformation from '../pages/Personal/PersonalInformation'
 import ShopRedEnvelope from '../pages/Personal/RedEnvelopes/ShopRedEnvelope'
 
 export default [
-  
+
   {
     path: '/home',
     component: Home
@@ -39,6 +41,20 @@ export default [
   {
     path: '/found/recommendation',
     component: Recommendation,
+    meta: {
+      isHideFooter: true // 是否隐藏底部
+    }
+  },
+  {
+    path: '/found/invitation',
+    component: Invitation,
+    meta: {
+      isHideFooter: true // 是否隐藏底部
+    },
+  },
+  {
+    path: '/found/strteg',
+    component: Strteg,
     meta: {
       isHideFooter: true // 是否隐藏底部
     },

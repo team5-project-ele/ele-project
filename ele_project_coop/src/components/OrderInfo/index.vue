@@ -140,7 +140,7 @@
                       <i v-if="tops.count>=1"
                          class="iconfont icon-icon-1"
                          @click="addOrDesCart(tops,false,index)"></i>
-                      <span>{{tops.count}}</span>
+                      <span v-if="tops.count>0">{{tops.count}}</span>
                       <van-icon class="sale-icon"
                                 name="add"
                                 color="#2396ff"
@@ -193,7 +193,7 @@
                             <i v-if="change.count>=1"
                                class="iconfont icon-icon-1"
                                @click="addOrDesCart(change,false,index)"></i>
-                            <span>{{change.count}}</span>
+                            <span v-if="change.count>0">{{change.count}}</span>
                             <van-icon class="sale-icon"
                                       name="add"
                                       color="#2396ff"
@@ -221,16 +221,50 @@
                             @click="goCart"
                             :class="{active:boughtList.length}" />
                   <div class="cart-tip"
-                       v-if="boughtList.length">{{boughtList.length}}</div>
+                       v-if="boughtList.length">{{getTotalCount}}</div>
+                  <van-action-sheet v-model="isShowing"
+                                    v-if="boughtList.length">
+                    <ul class="cartList">
+                      <li class="cartItem">
+                        <div class="title">已选商品</div>
+                        <div class="del"
+                             @click="deleteLi">
+                          <van-icon name="delete" />
+                          <span>清空</span>
+                        </div>
+                      </li>
+                      <li class="cartItemD"
+                          v-for="(cart,index) in boughtList"
+                          :key="cart.name">
+                        <span>{{cart.name}}</span>
+                        <div class="line">
+                          <div class="price">
+                            <del>￥2</del>
+                            <span>￥0.1</span>
+                          </div>
+                          <div class="plus">
+                            <i class="iconfont icon-icon-1"></i>
+                            <span>1</span>
+                            <van-icon class="sale-icon"
+                                      name="add"
+                                      color="#2396ff" />
+                          </div>
+                        </div>
+
+                      </li>
+                    </ul>
+                  </van-action-sheet>
                 </div>
                 <div class="cart-left">
-                  <p>未选购商品</p>
+                  <p v-if="boughtList.length">￥{{getTotalCount}}</p>
+                  <p v-else>未选购商品</p>
                   <p>另需配送费</p>
                 </div>
               </div>
-              <div class="cart-right">
+              <div class="cart-right"
+                   v-if="orderinfo.rst">
                 <p>下单前请点必选品</p>
-                <p>￥0起送</p>
+                <p>￥{{orderinfo.rst.piecewise_agent_fee.rules[0].price}}起送</p>
               </div>
             </div>
           </div>
@@ -238,9 +272,11 @@
       </van-tab>
       <van-tab class="tab"
                title="评价">
+        评价
       </van-tab>
       <van-tab class="tab"
                title="商家">
+        商家详情
       </van-tab>
     </van-tabs>
   </div>
@@ -248,7 +284,7 @@
 
 <script>
 import { Button, Tab, Tabs, Sticky, Tag, ActionSheet, Popup, Divider, Sidebar, SidebarItem } from 'vant'
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 export default {
   name: 'OrderInfo',
   data () {
@@ -257,7 +293,8 @@ export default {
       sheet: false,
       active: 0,
       navId: 0,
-      activeKey: 0
+      activeKey: 0,
+      isShowing: false
     }
   },
   mounted () {
@@ -274,13 +311,14 @@ export default {
     [Popup.name]: Popup,
     [Divider.name]: Divider,
     [Sidebar.name]: Sidebar,
-    [SidebarItem.name]: SidebarItem,
+    [SidebarItem.name]: SidebarItem
   },
   computed: {
     ...mapState({
       orderinfo: state => state.orderinfoModule.orderinfo,
       boughtList: state => state.orderinfoModule.boughtList
-    })
+    }),
+    ...mapGetters(['getTotalCount'])
   },
   methods: {
     ...mapActions({
@@ -288,7 +326,9 @@ export default {
     }),
     ...mapMutations({
       getBoughtList: 'getBoughtList',
-      changeCount: 'changeCount'
+      getBoughtListInfo: 'getBoughtListInfo',
+      changeCount: 'changeCount',
+      deleteShopCart: 'deleteShopCart'
     }),
     showPopup () {
       this.show = true
@@ -311,7 +351,11 @@ export default {
     },
     // 查看购物车
     goCart () {
-
+      this.isShowing = !this.isShowing
+    },
+    // 清空购物车
+    deleteLi () {
+      this.deleteShopCart()
     }
   }
 }
@@ -532,7 +576,7 @@ export default {
                     justify-content space-around
                     .iconfont
                       color #2396ff
-                      font-size 50px
+                      font-size 40px
                       vertical-align middle
                     span
                       color #333
@@ -541,7 +585,7 @@ export default {
                       margin 0 10px
                       vertical-align middle
                     .sale-icon
-                      font-size 50px
+                      font-size 40px
                       vertical-align middle
         .content
           display flex
@@ -670,8 +714,60 @@ export default {
                 .cart-tip
                   width 30px
                   height 30px
+                  color #fff
                   background-color red
                   border-radius 50%
+                  position absolute
+                  top 0
+                  left 80px
+                  font-size 28px
+                  text-align center
+                .cartList
+                  width 100%
+                  background-color #eceff1
+                  color #666
+                  font-size 26px
+                  li
+                    display flex
+                    line-height 80px
+                    justify-content space-between
+                    padding 0 20px
+                    font-size 30px
+                  .cartItemD
+                    background-color #fff
+                    >span
+                      display inline-block
+                      width 250px
+                      white-space nowrap
+                      overflow hidden
+                      text-overflow ellipsis
+                    .line
+                      display flex
+                      justify-content space-between
+                      align-items center
+                      text-align center
+                      .price
+                        margin-right 50px
+                        >del
+                          color #5f5f5f
+                          font-size 24px
+                        >span
+                          font-size 30px
+                          color #ff5339
+                      .plus
+                        .iconfont
+                          color #2396ff
+                          font-size 50px
+                          vertical-align middle
+                        >span
+                          color #333
+                          text-align center
+                          line-height 50px
+                          margin 0 10px
+                          vertical-align middle
+                        .sale-icon
+                          font-size 50px
+                          vertical-align middle
               .cart-left
                 margin-top 15px
             .cart-right
