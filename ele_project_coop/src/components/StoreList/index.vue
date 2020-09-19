@@ -2,7 +2,12 @@
   <div>
     <div class="categoryStore">
       <ul class="StoreList">
-      <li v-show="(restaurantCategoryIds === undefined || restaurantCategoryIds.length === 0) ? 'true' : restaurantCategoryIds.includes(storeItem.restaurant.flavors[0].id)"  class="storeItem" v-for="storeItem in storeList" :key="storeItem.restaurant.id">
+      <li 
+        v-show="(restaurantCategoryIds === undefined || restaurantCategoryIds.length === 0) ? 'true' : restaurantCategoryIds.includes(storeItem.restaurant.flavors[0].id)" 
+        class="storeItem" 
+        v-for="storeItem in storeList" 
+        :key="storeItem.restaurant.id"
+      >
         <!-- 商家详情 -->
         <div class="storeDsec" >
           <div class="image"><img :src="storeItem.restaurant.image"></div>
@@ -14,7 +19,7 @@
             <!-- 评分 -->
             <div class="score">
               <van-rate
-                v-model="value"
+                :value="storeItem.restaurant.rating"
                 :size="6"
                 :gutter="8"
                 color="#ffd21e"
@@ -55,34 +60,60 @@
   </div>
 </template>
 <script>
-// isShow(storeItem.restaurant.flavors[0].id)
-// restaurantCategoryIds.length !== 0 ? restaurantCategoryIds.includes(storeItem.restaurant.flavors[0].id) : 'true'
 import { Rate ,Tag} from 'vant'
-import {reqStoreList} from '../../api/index'
+// import {reqStoreList} from '../../api/index'
+import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
   name:'storeList',
   props: ['restaurantCategoryIds'],
   data () {
     return {
       value:3, // 评分
-      storeList:[], // 商家列表数组数据
+      // storeList:[], // 商家列表数组数据
+      newStoreList:[], // 筛选出来的商家裂变数据
     }
   },
   components: {
     [Rate.name]: Rate,
     [Tag.name]: Tag,
   },
+  computed: {
+    ...mapState({
+      storeList:state => state.storeListModule.storeList
+    })
+  },
   mounted () {
-    this.getStoreList()
+    this.storeListSort()
   },
   methods: {
-    //  发送请求，获取商家列表数据
-    async getStoreList () {
-      const result = await reqStoreList()
-      this.storeList = result.data.items
+    
+    // 对综合排序下的选项进行排序
+    storeListSort () {
+      this.$screen.$on('storeSort',(value)=>{       
+        if (value === 1) {
+          // 起送价最低
+          this.storeList.sort(function (a,b) {
+            return a.restaurant.piecewise_agent_fee.rules[0].price - b.restaurant.piecewise_agent_fee.rules[0].price
+          })
+        }else if (value === 2) {
+          // 配送最快  
+        }else if (value === 0 || value === 7) {
+          this.sort('rating')  
+        }else if (value === 5) {
+          this.sort('distance')
+        }else if (value === 6) {
+          this.sort('recent_order_num')
+        }
+      })
     },
 
-  },
+    // 排序筛选
+    sort (val) {
+      this.storeList.sort(function (a,b) {
+        return b.restaurant[val] - a.restaurant[val]
+      })
+    }
+  }
 
   
 }

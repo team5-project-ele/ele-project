@@ -12,13 +12,7 @@
 
       <!-- 综合排序 筛选 -->
       <van-sticky :offset-top="40"><Screen /></van-sticky>
-      <!-- <div class="screen">
-        <div class="icon">综合排序<span class="iconfont icon-Downarrow-filled" style="font-size:10px"></span></div>
-        <div>距离最近</div>
-        <div>销量最高</div>
-        <div>筛选<span class="iconfont icon-shaixuan"></span></div>
-      </div> -->
-
+      
     <!-- 商家列表 -->
     <StoreList :restaurantCategoryIds="restaurantCategoryIds"/>
   </div>
@@ -44,7 +38,6 @@ export default {
     //  发送请求，请求商家商品信息数据
     async getCategoryStore () {
       const result = await reqCategoryStore()
-      console.log(result.data.category)
       this.categoryStoreList = result.data.category
       this.categoryId = result.data.category[0].id
     },
@@ -53,7 +46,6 @@ export default {
     toCategory (categoryId,restaurantCategoryIds) {
       this.categoryId = categoryId
       this.restaurantCategoryIds = restaurantCategoryIds
-      console.log(restaurantCategoryIds)
     }
   },
   components: {

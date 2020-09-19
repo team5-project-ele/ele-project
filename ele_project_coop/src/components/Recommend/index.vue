@@ -36,7 +36,7 @@
     </div>
     <!-- 产品展示区 -->
     <ul class="exhibition" >
-      <li class="exhibitionItem" v-for="(item,index) in operatingList.list" @click="showItem" :key="item.id">
+      <li class="exhibitionItem" v-for="(item,index) in operatingList.list" @click="showItem(index)" :key="item.id">
         <img :src="(item.image)" alt="">
         <p class="title">{{item.title}}</p>
       </li>
@@ -78,9 +78,12 @@ export default{
       getGoldCoinMallListAction:'getGoldCoinMallListAction'
     }),
     // 点击查看详情
-    showItem(){
+    showItem(navIndex){
       this.$router.push({
-        path:'/found/details'
+        path:'/found/details',
+        query:{
+          navIndex
+        }
       })
     }
   },
@@ -102,8 +105,9 @@ export default{
     line-height 100px
     background #fff
     z-index 100
+    width 100%
     .conic
-      width 375px
+      width 50%
       height 100px
       &:after
         position absolute

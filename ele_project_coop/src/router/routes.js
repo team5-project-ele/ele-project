@@ -7,7 +7,7 @@ import Detail from '../pages/Order/Detail'
 import RedEnvelopes from '../pages/Personal/RedEnvelopes'
 import GoldCoin from '../pages/Personal/GoldCoin'
 import Recommend from '../components/Recommend'
-import Recommendation from '../pages/Found/Recommendation'
+import Recommendation from '../components/Recommendation'
 import Periphery from '../pages/Found/Periphery'
 import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
@@ -15,7 +15,6 @@ import  ShippingAddress from '../pages/Personal/ShippingAddress'
 import MyCustomerService from '../pages/Personal/MyCustomerService'
 import Rule from '../pages/Personal/Rule'
 import Search from '../pages/Home/Search'
-import RestaurantInfo from '../components/OrderInfo/RestaurantInfo'
 import Details from '../components/Details'
 import PersonalInformation from '../pages/Personal/PersonalInformation'
 
@@ -41,7 +40,7 @@ export default [
     component: Recommendation,
     meta: {
       isHideFooter: true // 是否隐藏底部
-    }
+    },
   },
   {
     path: '/found/periphery',
@@ -123,12 +122,6 @@ export default [
   {
     path: '/orderinfo',
     component: OrderInfo,
-    children: [
-      {
-        path: '/orderinfo/restaurantinfo',
-        component: RestaurantInfo
-      }
-    ],
     meta: {
       isHideFooter: true
     }

@@ -6,7 +6,7 @@
            :key="list.id">
         <div class="orderCard">
           <div class="top"
-               @click="toOrderInfo">
+               @click="toOrderInfo(list.id)">
             <div class="logo">
               <img :src="list.restaurant_img"
                    alt="">
@@ -52,13 +52,13 @@
 </template>
 
 <script>
-import { Button, PullRefresh } from 'vant'
+import { Button } from 'vant'
 import { mapState, mapGetters, mapActions } from 'vuex'
+import { reqOrderInfo } from '../../api'
 export default {
   name: 'Order',
   components: {
-    [Button.name]: Button,
-    [PullRefresh.name]: PullRefresh
+    [Button.name]: Button
   },
   data () {
     return {
@@ -81,8 +81,8 @@ export default {
       this.$router.replace({ path: '/order/detail', query: { info: obj, item: result } })
     },
     // 跳转到商品详情页
-    toOrderInfo () {
-      this.$router.push('/orderinfo')
+    toOrderInfo (navId) {
+      this.$router.push({ path: '/orderinfo', query: { listId: navId } })
     },
     // 跳转到登录页面
     toLogin () {
@@ -102,7 +102,6 @@ export default {
 .orderContainer
   padding-top 10px
   width 100%
-  height 100%
   background-color rgb(245, 245, 245)
   .orderList
     width 100%
