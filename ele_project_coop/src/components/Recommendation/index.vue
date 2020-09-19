@@ -100,11 +100,12 @@
     },
     mounted(){
       let uuid = this.uuid = localStorage.getItem('UUID_KEY')
-      console.log(uuid)
       if(!uuid){
         this.$router.push({
           path:'/login'
         })
+      }else{
+
       }
     },
     methods:{
