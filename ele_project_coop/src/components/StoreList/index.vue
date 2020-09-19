@@ -95,7 +95,6 @@ export default {
   mounted () {
     this.storeListSort()
     this.uuid = localStorage.getItem('UUID_KEY')
-    console.log(uuid)
   },
   methods: {
     

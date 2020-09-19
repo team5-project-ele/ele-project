@@ -119,12 +119,15 @@ export default {
           isDefault: false,
         }
       ],
+      getAdd:'', // 得到地址数据
     }
   },
   mounted () {
     this.getFirstPage()
     this.$store.dispatch('getStoreListAction')
-    this.showLocation = true
+    if (!this.getAdd) {
+      this.showLocation = true
+    }
   },
   methods: {
     async getFirstPage () {
@@ -145,6 +148,7 @@ export default {
     // 点击跳转到首页
     topage () {
       this.showLocation = false
+      this.getAdd = '华北理工大学'
     }
   }
 }
