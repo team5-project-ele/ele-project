@@ -1,21 +1,25 @@
 <template>
   <div class="infoContainer">
-    <div class="header">
+    <div class="header"
+         v-if="orderinfo.rst">
       <div class="top">
+        <img :src="orderinfo.rst.nav_img"
+             alt="">
         <van-icon color="#fff"
                   class="icon"
-                  name="arrow-left" />
+                  name="arrow-left"
+                  @click="toBack" />
       </div>
       <div class="bottom">
         <div class="bottom-img">
-          <img src="./order/logo.webp"
+          <img :src="orderinfo.rst.logo_img"
                alt="">
           <span class="icon">品牌</span>
         </div>
         <div class="bottom-title"
              @click="showPopup">
           <h2>
-            <span>頭叁甲(包子油条豆腐脑回龙观东大街店)</span>
+            <span>{{orderinfo.rst.name}}</span>
             <van-icon class="title-icon"
                       name="play" />
           </h2>
@@ -29,7 +33,7 @@
                    class="msg">
           <div class="msg-title">
             <i class="msg-icon">品牌</i>
-            <span>頭叁甲(包子油条豆腐脑回龙观东大街店)</span>
+            <span>{{orderinfo.rst.name}}</span>
           </div>
           <div class="msg-cont">
             <div class="contItem">
@@ -55,7 +59,7 @@
           </div>
           <van-divider>公告</van-divider>
           <div class="msg-text">
-            现在的市场太透明了，便宜的东西无非就是减少成本，原料少一点，工艺差一点，看似差不多，其实相差甚远，价格战我们甘拜下风，打打质量战我们横扫千军，而我们的顾客也很睿智，所以我们家的订单也一直不断，口碑也是交口称赞，总结了一点，吃了都说好！
+            {{orderinfo.rst.promotion_info}}
           </div>
         </van-popup>
         <div class="card">
@@ -104,7 +108,7 @@
             </div>
           </van-action-sheet>
         </div>
-        <p class="van-ellipsis">公告：现在的市场太透明了，便宜的东西无非就是减少成本，原料少一点，工艺差一点，看似差不多，其实相差甚远，价格战我们甘拜下风，打打质量战我们横扫千军，而我们的顾客也很睿智，所以我们家的订单也一直不断，口碑也是交口称赞，总结了一点，吃了都说好！</p>
+        <p class="van-ellipsis">公告：{{orderinfo.rst.promotion_info}}</p>
       </div>
     </div>
     <van-tabs class="tabs"
@@ -113,15 +117,130 @@
               color="#2396ff">
       <van-tab class="tab"
                title="点餐">
-        <RestaurantInfo />
+        <div class="main">
+          <div class="hot"
+               v-if="orderinfo.rst">
+            <div class="main-img">
+              <img :src="orderinfo.rst.tab_img"
+                   alt="">
+            </div>
+            <div class="recommend">
+              <p>{{orderinfo.recommend[0].name}}</p>
+              <ul class="list">
+                <li class="tops"
+                    v-for="(tops,index) in orderinfo.recommend[0].items"
+                    :key="tops.item_id">
+                  <img :src="orderinfo.rst.list_img"
+                       alt="">
+                  <h4>{{tops.name}}</h4>
+                  <p>{{tops.tips}}</p>
+                  <div class="sale">
+                    <span>￥{{tops.price}}</span>
+                    <div class="plus">
+                      <i v-if="tops.count>=1"
+                         class="iconfont icon-icon-1"
+                         @click="addOrDesCart(tops,false,index)"></i>
+                      <span>{{tops.count}}</span>
+                      <van-icon class="sale-icon"
+                                name="add"
+                                color="#2396ff"
+                                @click="addOrDesCart(tops,true,index)" />
+                    </div>
+
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="content">
+            <van-sticky class="stickyContainer"
+                        :offset-top="50">
+              <van-sidebar v-model="activeKey"
+                           class="sideContainer">
+                <van-sidebar-item class="sideItem"
+                                  :title="item.name"
+                                  v-for="(item,index) in orderinfo.menu"
+                                  :key="item.name" />
+              </van-sidebar>
+            </van-sticky>
+            <van-sticky class="stickyContainer2"
+                        :offset-top="50">
+              <div class="listContainer">
+                <dl class="menu"
+                    v-for="(menuItem,index) in orderinfo.menu"
+                    :key="menuItem.vfood_id"
+                    v-show="index===activeKey">
+                  <dt class="title">
+                    <span class="in-title">{{menuItem.name}}</span>
+                    <span>{{menuItem.description}}</span>
+                  </dt>
+                  <dd class="in-list"
+                      v-for="(change,index) in menuItem.foods"
+                      :key="change.vfood_id">
+                    <div class="in-item">
+                      <img :src="orderinfo.rst.list_img"
+                           alt="">
+                      <section>
+                        <h4 class="sec-tit">{{change.name}}</h4>
+                        <p>{{change.description}}</p>
+                        <div class="sect">
+                          <span>月售100份</span>
+                          <span>好评率89%</span>
+                        </div>
+                        <div class="sale">
+                          <span>￥1</span>
+                          <div class="plus">
+                            <i v-if="change.count>=1"
+                               class="iconfont icon-icon-1"
+                               @click="addOrDesCart(change,false,index)"></i>
+                            <span>{{change.count}}</span>
+                            <van-icon class="sale-icon"
+                                      name="add"
+                                      color="#2396ff"
+                                      @click="addOrDesCart(change,true,index)" />
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </van-sticky>
+          </div>
+          <div class="footer">
+            <van-button round
+                        class="side-icon"
+                        color="#ff6000"
+                        @click="toList">去点必选品</van-button>
+            <p>满25元减4元，满36元减5元，满39元减9元</p>
+            <div class="cart">
+              <div class="cartCar">
+                <div class="cart-icon">
+                  <van-icon name="cart-circle"
+                            class="cart-i"
+                            @click="goCart"
+                            :class="{active:boughtList.length}" />
+                  <div class="cart-tip"
+                       v-if="boughtList.length">{{boughtList.length}}</div>
+                </div>
+                <div class="cart-left">
+                  <p>未选购商品</p>
+                  <p>另需配送费</p>
+                </div>
+              </div>
+              <div class="cart-right">
+                <p>下单前请点必选品</p>
+                <p>￥0起送</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </van-tab>
       <van-tab class="tab"
                title="评价">
-        <RestaurantInfo />
       </van-tab>
       <van-tab class="tab"
                title="商家">
-        <RestaurantInfo />
       </van-tab>
     </van-tabs>
   </div>
@@ -129,21 +248,23 @@
 
 <script>
 import { Button, Tab, Tabs, Sticky, Tag, ActionSheet, Popup, Divider, Sidebar, SidebarItem } from 'vant'
-import RestaurantInfo from './RestaurantInfo'
+import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'OrderInfo',
   data () {
     return {
       show: false,
       sheet: false,
-      active: 0
+      active: 0,
+      navId: 0,
+      activeKey: 0
     }
   },
   mounted () {
-
+    this.navId = this.$route.query.listId
+    this.getOrderInfoAction(this.navId)
   },
   components: {
-    RestaurantInfo,
     [Tab.name]: Tab,
     [Button.name]: Button,
     [Tabs.name]: Tabs,
@@ -155,12 +276,42 @@ export default {
     [Sidebar.name]: Sidebar,
     [SidebarItem.name]: SidebarItem,
   },
+  computed: {
+    ...mapState({
+      orderinfo: state => state.orderinfoModule.orderinfo,
+      boughtList: state => state.orderinfoModule.boughtList
+    })
+  },
   methods: {
+    ...mapActions({
+      getOrderInfoAction: 'getOrderInfoAction'
+    }),
+    ...mapMutations({
+      getBoughtList: 'getBoughtList',
+      changeCount: 'changeCount'
+    }),
     showPopup () {
       this.show = true
     },
     showSheet () {
       this.sheet = true
+    },
+    // 返回界面
+    toBack () {
+      this.$router.back()
+    },
+    // 去必选品
+    toList () {
+      let result = this.orderinfo.menu.findIndex(item => item.name === '必选品')
+      this.activeKey = result
+    },
+    // 添加购物车
+    addOrDesCart (obj, flag, index) {
+      this.getBoughtList({ obj, flag, index })
+    },
+    // 查看购物车
+    goCart () {
+
     }
   }
 }
@@ -172,16 +323,13 @@ export default {
   height 100%
   .header
     width 100%
-    // height 537px
     background-color #fff
     .top
       height 200px
-      background-color skyblue
       position relative
-      background-image url('./order/tab.webp')
-      background-size cover
-      background-repeat no-repeat
-      background-position 50%
+      >img
+        width 100%
+        height 200px
       &:before
         content ''
         width 100%
@@ -332,4 +480,202 @@ export default {
       >p
         color #999
         padding 0 60px
+  .tabs
+    .tab
+      .main
+        .hot
+          display flex
+          flex-direction column
+          .main-img
+            width 686px
+            height 176px
+            margin 0 auto
+            >img
+              width 100%
+              height 100%
+              border-radius 5px
+          .recommend
+            height 500px
+            width calc(100vw - 25px)
+            padding-left 25px
+            margin-top 25px
+            >p
+              font-weight bold
+              font-size 35px
+              margin-bottom 25px
+            .list
+              height 450px
+              display flex
+              overflow auto
+              .tops
+                height 100%
+                margin-right 25px
+                >img
+                  width 240px
+                  height 240px
+                h4
+                  color #333
+                  margin 15px 0
+                  font-size 28px
+                >p
+                  color #999
+                .sale
+                  width 240px
+                  display flex
+                  margin-top 20px
+                  justify-content space-between
+                  span
+                    color #ff5339
+                    font-size 35px
+                  .plus
+                    display flex
+                    justify-content space-around
+                    .iconfont
+                      color #2396ff
+                      font-size 50px
+                      vertical-align middle
+                    span
+                      color #333
+                      text-align center
+                      line-height 50px
+                      margin 0 10px
+                      vertical-align middle
+                    .sale-icon
+                      font-size 50px
+                      vertical-align middle
+        .content
+          display flex
+          .stickyContainer
+            margin-bottom 100px
+            width 180px
+            .sideContainer
+              width 180px
+              overflow auto
+              height calc(100vh - 200px)
+              .sideItem
+                font-size 26px
+                color #666
+          .stickyContainer2
+            width calc(100vw - 200px)
+            padding-left 20px
+            overflow auto
+            flex 1
+            margin-bottom 100px
+            .listContainer
+              width 100%
+              overflow auto
+              .menu
+                width 100%
+                .title
+                  line-height 48px
+                  margin 10px 0
+                  color #999
+                  .in-title
+                    color #666
+                    font-size 28px
+                    font-weight bold
+                    margin-right 10px
+                .in-list
+                  .in-item
+                    height 190px
+                    margin 20px 0
+                    display flex
+                    >img
+                      width 190px
+                      height 190px
+                    section
+                      width calc(100vw - 430px)
+                      padding-left 20px
+                      color #333
+                      display flex
+                      flex-direction column
+                      justify-content space-evenly
+                      .sec-tit
+                        font-weight bold
+                        font-size 29px
+                        text-overflow ellipsis
+                        white-space nowrap
+                        overflow hidden
+                      >p
+                        color #999
+                        text-overflow ellipsis
+                        white-space nowrap
+                        overflow hidden
+                      .sect
+                        color #999
+                      .sale
+                        display flex
+                        margin-top 10px
+                        justify-content space-between
+                        span
+                          color #ff5339
+                            font-size 30px
+                        .plus
+                          display flex
+                          justify-content space-around
+                          .iconfont
+                            color #2396ff
+                            font-size 50px
+                            vertical-align middle
+                          span
+                            color #333
+                            text-align center
+                            line-height 50px
+                            margin 0 10px
+                            vertical-align middle
+                          .sale-icon
+                            font-size 50px
+                            vertical-align middle
+        .footer
+          z-index 99
+          position fixed
+          bottom 0
+          left 0
+          width 100%
+          height 121px
+          background-color rgba(61, 61, 63, 0.9)
+          .side-icon
+            width 185px
+            height 63px
+            position absolute
+            right 20px
+            top -100px
+            font-size 24px
+            font-weight bold
+          >p
+            background-color #f9e8a3
+            text-align center
+            padding 8px 0
+            color #333
+            font-size 22px
+          .cart
+            display flex
+            justify-content space-between
+            align-items center
+            padding 0 20px
+            color #999
+            .cartCar
+              display flex
+              align-items center
+              .cart-icon
+                font-size 80px
+                margin-right 30px
+                margin-top -30px
+                .cart-i
+                  background-color rgba(61, 61, 63, 0.9)
+                  border-radius 50%
+                  &.active
+                    background-color #2396ff
+                    color #fff
+                .cart-tip
+                  width 30px
+                  height 30px
+                  background-color red
+                  border-radius 50%
+              .cart-left
+                margin-top 15px
+            .cart-right
+              color #fff
+              text-align center
+              margin-top 15px
 </style>
