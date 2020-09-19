@@ -41,14 +41,19 @@
     <footer @click="signOut" class="footer">
       <p>退出登录</p>
     </footer>
+
+   
   </div>
 </template>
 <script>
+import Vue from 'vue';
+import { Uploader } from 'vant';
 
+Vue.use(Uploader);
 export default {
   data(){
     return {
-
+      
     }
   },
   mounted(){

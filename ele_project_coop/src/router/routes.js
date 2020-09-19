@@ -17,6 +17,7 @@ import Rule from '../pages/Personal/Rule'
 import Search from '../pages/Home/Search'
 import Details from '../components/Details'
 import PersonalInformation from '../pages/Personal/PersonalInformation'
+import ShopRedEnvelope from '../pages/Personal/RedEnvelopes/ShopRedEnvelope'
 
 export default [
   
@@ -78,7 +79,14 @@ export default [
         name: 'redenvelopes',
         meta: {
           isHideFooter: true // 是否隐藏底部
-        }
+        },
+        children: [
+          {
+            path: '/personal/redenvelopes/shopredenvelope',
+            component: ShopRedEnvelope,
+            name: 'shopredenvelope'
+          }
+        ]
       },
       {
         path: '/personal/goldcoin',

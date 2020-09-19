@@ -8,43 +8,53 @@
         <p>兑换红包</p>
       </div>
       <ul class="tapbar">
-        <li >红包 <span>0</span></li>
-        <li >店铺红包<span>2</span></li>
-        <li >抵用卷<span>0</span></li>
+        <li :class="select === 0" @click="switchStaet(0)">红包 <span>0</span></li>
+        <li :class="select === 1" @click="switchStaet(1)">店铺红包<span>0</span></li>
+        <li :class="select === 2" @click="switchStaet(2)">抵用卷<span>0</span></li>
       </ul>
     </header>
-    <!-- 下拉框 -->
-    <main class="main">
-      <div class="recommend">
-        <span><img src="../../../../public/images/gift.png" alt=""></span>
-        <p>推荐有奖</p>
-        <div>15元现金拿不停<van-icon name="arrow" /></div>
-      </div>
-      <div class="no-RedEnvelopes">
-        <img src="https://cube.elemecdn.com/5/51/255490294be88d8a2fbb92c5ad1bcgif.gif">
-      </div>
-      <ul class="bottom-text">
-        <li>没有红包</li>
-        <li>快去抢几个吧</li>
-      </ul>
-    </main>
-    <footer class="footer">
-      <div>
-        <span>查看历史红包</span><i>|</i><span>红包说明</span>
-      </div>
-    </footer>
+    <div>
+        <!-- 下拉框 -->
+      <main class="main">
+        <div class="recommend">
+          <span><img src="../../../../public/images/gift.png" alt=""></span>
+          <p>推荐有奖</p>
+          <div>15元现金拿不停<van-icon name="arrow" /></div>
+        </div>
+        <div class="no-RedEnvelopes">
+          <img src="https://cube.elemecdn.com/5/51/255490294be88d8a2fbb92c5ad1bcgif.gif">
+        </div>
+        <ul class="bottom-text">
+          <li>没有红包</li>
+          <li>快去抢几个吧</li>
+        </ul>
+      </main>
+      <footer class="footer">
+        <div>
+          <span>查看历史红包</span><i>|</i><span>红包说明</span>
+        </div>
+      </footer>
+    </div>
   </div>
 </template>
 <script>
 import {icon} from 'vant'
 
 export default {
+  data(){
+    return {
+      select: 0,
+    }
+  },
   components:{
     [icon.name]:icon
   },
   methods: {
     goback(){
       this.$router.go(-1)
+    },
+    switchStaet(num){
+      this.select = num;
     }
   }
 }
@@ -97,7 +107,7 @@ export default {
           &:first-child
             border-bottom 1px solid white
             color white
-          &:active
+          .select
             border-bottom 1px solid white
           span 
             font-size 12px
@@ -114,7 +124,7 @@ export default {
         width 698px
         height 84px
         background white
-        box-shadow 3px 3px #E0E0E0
+        box-shadow 1px 1px #E0E0E0
         position relative
         span 
           height 30px
