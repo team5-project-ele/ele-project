@@ -82,6 +82,7 @@
       <van-address-list
         :list="list"
         class="ship"
+        @select="topage"
       />
     </div>
   </div>
@@ -123,6 +124,7 @@ export default {
   mounted () {
     this.getFirstPage()
     this.$store.dispatch('getStoreListAction')
+    this.showLocation = true
   },
   methods: {
     async getFirstPage () {
@@ -249,7 +251,6 @@ export default {
       .recommedStore
         position relative
         width 100%
-        height 72px
         text-align center
         .store
           position relative
