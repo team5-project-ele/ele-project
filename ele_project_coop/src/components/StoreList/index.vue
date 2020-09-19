@@ -23,6 +23,7 @@
                 :value="storeItem.restaurant.rating"
                 :size="6"
                 :gutter="8"
+                allow-half
                 color="#ffd21e"
                 void-icon="star"
                 void-color="#eee"

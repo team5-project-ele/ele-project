@@ -6,3 +6,19 @@
 
 4.获取当前定位思路：
       获取当前电脑IP地址，根据IP地址传唤成经纬度，通过经纬度，根据百度地图API中的方法获取到当前位置
+
+5.关键字搜索时，用到的双层数组方法
+  let newStoreList = state.storeList.filter(item => {
+    return item.restaurant.flavors.some(event => {
+      let result = event.name.indexOf(value.msg)
+      if (result !== -1) {
+        // 找到对象字符串
+        return true
+      } else {
+        return false
+      }
+    })
+  })
+
+6.单位转换
+  parseFloat(storeItem.restaurant.distance * 0.001).toFixed(2)
