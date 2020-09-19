@@ -51,7 +51,9 @@
     <footer class="footer">
       <div class="newlyadded">
         <div class="add">
-          <van-icon class="iconfontjiahao" name="add-o" />
+          <span>
+            <van-icon class="iconfontjiahao" name="add-o" />
+          </span>
           <span>新增收获地址</span>
         </div>
       </div>
@@ -140,20 +142,19 @@ export default {
       background #ffffff
       position fixed
       bottom 0
-      display flex
-      justify-content center
-      font-size 32px
-      color #3190E8
-      display flex
-      line-height 104px
-      .iconfontjiahao
-        margin-right 10px
-        position absolute
-        top 50%
-        left 30%
-        transform translate(0,-50%)
-        display inline-block
-        font-size 45px
+      .newlyadded
+        dispaly flex 
+        line-height 104px
+        text-align center
+        font-size 32px
+        color #3190E8
+        span 
+          &:last-child
+            margin-left 10px
+          .iconfontjiahao
+            font-size 45px
+            position relative
+            top 10px
        
           
         

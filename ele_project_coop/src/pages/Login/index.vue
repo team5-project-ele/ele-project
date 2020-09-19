@@ -5,13 +5,13 @@
       <img src="https://gw.alicdn.com/tfs/TB1kHnqpcKfxu4jSZPfXXb3dXXa-750-192.png" alt="">
       </div>
       <div class="userInfo">
-        <input class="user-Input" @input="handleInput(true)"  v-model="phone" placeholder="手机号"/>
-        <input class="user-Input"  @input="handleInput(false)"  v-model="code" placeholder="验证码"/>
+        <input class="user-Input"  v-model="phone" placeholder="手机号"/>
+        <input class="user-Input"  v-model="code" placeholder="验证码"/>
         <button :class="{grey:handleDisabled}" :disabled="handleDisabled" class="Get-validation" @click="handleCode">获取验证码</button>
       </div>
       <div class="Service-agreement">
-        新用户登录即自动注册，并表示已同意
-        <span class="user-Service-agreement">{{A}}</span>
+        <span>新用户登录即自动注册，并表示已同意</span>
+        <span class="user-Service-agreement">&nbsp;{{A}}</span>
         &nbsp;&nbsp;和&nbsp;&nbsp;
         <span class="privacy-Privacy">{{B}}</span>
       </div>
@@ -28,6 +28,7 @@
 <script>
 import {Toast} from 'vant'
 import {reqGetCaptcha} from '../../api/index'
+import {getUUID} from '../../util/storageUtils'
 export default {
   name: 'Login',
   components: {
@@ -47,12 +48,6 @@ export default {
     this.captcha = 0
   },
     methods: {
-      handleInput(flag){
-        if(flag){
-          
-
-        }
-      },
       handleLogin(){
         const {phone, code, captcha} = this
         let phoneReg = /^1(3|4|5|6|7|8|9)\d{9}/;
@@ -62,13 +57,21 @@ export default {
                 position: 'bottom',
               })
           
+        }else if(!code){
+          Toast({
+            message: '请填写验证码',
+            position: 'top'
+          })
         }else{
           if(!phoneReg.test(phone)){
             Toast({message: '手机号不正确', position: 'bottom'})
           }else{ // 验证码是否匹配
             if(code>>>0 === captcha){
               // 登录成功
-              this.$router.replace({path:`/personal?phone=${phone}`})
+              this.$router.replace({path:`/personal`})
+              localStorage.setItem('PHONE',phone)
+              let uuid = getUUID()
+              localStorage.setItem('UUID_KEY',uuid)
             }else{
               Toast({message: `验证码不正确，请重新输入，验证码为:${captcha}`, position: 'top'})
             }
@@ -119,6 +122,11 @@ export default {
           padding-left 20px
           outline-color #02B6FD
           border-radius 10px
+          font-size 28px
+          &::placeholder
+            color #A6A6C4
+          &:focus 
+            border-color #0089DC
           &:first-child
             margin-bottom 30px
         .Get-validation
@@ -127,6 +135,7 @@ export default {
             right 100px
             background #ffffff
             border none
+            color #02B6FD
         .grey
           color #CCCCCC
       .login-logo 
@@ -145,6 +154,10 @@ export default {
         color #999999
         span 
           color #02B6FD
+          &:first-child
+            display inline-block
+            color #999999
+            margin-bottom 10px
       .login
         width 600px
         

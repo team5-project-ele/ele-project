@@ -17,6 +17,7 @@ import Rule from '../pages/Personal/Rule'
 import Search from '../pages/Home/Search'
 import RestaurantInfo from '../components/OrderInfo/RestaurantInfo'
 import Details from '../components/Details'
+import PersonalInformation from '../pages/Personal/PersonalInformation'
 
 export default [
   
@@ -143,5 +144,13 @@ export default [
   {
     path: '/search',
     component: Search
+  },
+  {
+    path: '/personalinformation',
+    component: PersonalInformation,
+    name: 'personalinformation',
+    meta: {
+      isHideFooter: true // 是否隐藏底部
+    }
   }
 ]

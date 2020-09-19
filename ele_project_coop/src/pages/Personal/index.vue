@@ -3,16 +3,17 @@
     <!-- 头部登录+金币+红包 -->
       <div v-if="this.isShow" class="personal">
         <header class="header">
-          <div class="login">
-            <div @click="toJump('/login')" class="center">
+          <div  @click="toJump(userName ? `/personalinformation?userName=${userName}&phone=${phone}` : '/login')" class="login">
+            <div  class="center">
               <img v-if="!userName" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAMAAAAOusbgAAAAM1BMVEXE5/XI6fbT7fjW7/jl9fvw+f3////a8Pnt+PzL6vb7/v7i8/rP7Pf4/P7e8vn0+/3p9vvI4mwRAAACI0lEQVR4Ae3YBxbkIAgGYDCKgqbc/7LbS5hJexvMNr7Xp/0j9oBzzjnnnHPOuX8Qhq/wycwhJvopxQGfSM2F3pXcOZuj0DaJDN1gpSMRoY9B6Jhk6AALnSsI1tpIV0jrX+ZHyp3putwzN9XA8BmHmvolN1LGCWENp5GUADZYVGyGd1lFC4OJmVYqbKu0MoOFem22TPrv3cf004ywa6A1htvStdw2Go+vcC03C5EuzV3pSv/iQsqCllN4gj1tJmWC+342JV1dx8cGBuR8nEbznVHNkQW28UxKBeV+pRtsCrrMEsDGeLIIVlISgg08HqiYSIlgJRxWuoku8wA2VCU3dwVlZugQnE4PnYt+t05wR6FvysmeIPltrC8mC3U97t65bRQq9whO23uC6gRp9sFMa9NOJ8z2wWF3T1BvDfdXzLLb4oL7a1m9P53mq50PwSR42ltA2v6eEC2uFGH38Ja39wRVDUGDTSJudH+ETSg3G6wuESO8anxSpww3xF+aGvX+yWvQZ72rohQ0O+wFeI6q9QiPYr0cPGih31Rs1pfjBy2/KxnlYjJPtTYwNFy7CE5CnyzGxf4pMWzhQkTWyTjTWkV4hVW6PNhjIWUZdF+okgiDnSakSakhMHAItQhpAXom7xN+8nG1OnTawkRXJARzlc5V6KElOpYadJJH2jdm6CjPtG3O0FmL780eY4MncI5J6CtJMTM8iwODc84555xzzv0PPgKMKi2olgNo0QAAAABJRU5ErkJggg==" alt="">
               <img v-else src="https://cube.elemecdn.com/c/6b/8384f98b8dedfd87fc1450926648cjpeg.jpeg?x-oss-process=image/format,webp/resize,w_120,h_120,m_fixed" alt="">
               <div class="login-text">
                 <h1 v-if="!userName">登录<span>/</span>注册</h1>
-                <h1 v-else>{{userName}}用户</h1>
+                <h1 v-else>{{userName}}</h1>
                 <div>
                   <span class="iconfont icon-shouji"></span>
-                  <span>登录后享受更多特权</span>
+                  <span v-if="!userName">登录后享受更多特权</span>
+                  <span v-else>{{phone}}</span>
                 </div>
               </div>
               <div class="iconfont icon-dayuhao"></div>
@@ -20,12 +21,23 @@
           </div>
           <div class="classification">
             <div @click="toJump('/personal/redenvelopes')" class="Red-envelopes">
-              <div class="iconfont icon-hongbao"></div>
+              <div v-if="!userName" class="iconfont icon-hongbao"></div>
+              <div v-else class="num">
+                <p  id="red">
+                  0
+                  <span>个</span>
+                </p>
+              </div>
               <p>红包</p>
-              
             </div>
             <div @click="toJump('/personal/goldcoin')" class="Gold-coin">
-              <div class="iconfont icon-jinbishangcheng"></div>
+              <div v-if="!userName" class="iconfont icon-jinbishangcheng"></div>
+              <div v-else class="num">
+                <p  id="green">
+                  0
+                  <span>个</span>
+                </p>
+              </div>
               <p>金币</p>
             </div>
           </div>
@@ -74,24 +86,29 @@
   </div>
 </template>
 <script>
-
 export default {
   name: 'Personal',
   components: {
     
   },
   mounted(){
-    let userName = this.$route.query.phone
-    if(userName){
-      userName = this.$route.query.phone.split('')
-      userName.splice(3,4,'****')
-      this.userName = userName.join('')
+    // console.log('触发了')
+    if(localStorage.getItem('UUID_KEY')){
+      let result = localStorage.getItem('UUID_KEY')
+      this.A = localStorage.getItem('UUID_KEY')
+      this.userName = result.slice(0,12)
+    }
+    if(localStorage.getItem('PHONE')){
+      let userPhone = localStorage.getItem('PHONE')
+      userPhone = localStorage.getItem('PHONE').split('')
+      userPhone.splice(3,4,'****')
+      this.phone = userPhone.join('')
     }
   },
   data(){
     return {
       userName: '',
-      
+      phone:'',
     }
   },
   methods: {
@@ -170,6 +187,25 @@ export default {
             background #FF5F3E
           .icon-jinbishangcheng
             background #6AC20B
+          .num
+            p 
+              font-size 52px
+              font-weight bold
+              // color #FF5F3E
+              margin-top 60px
+              display inline-block
+              span
+                font-size 12px
+                margin-left 30px
+                position relative
+                bottom 55px
+            #red
+              color #FF5F3E
+            #green
+              color #6AC20B
+
+
+
           
 
           div
