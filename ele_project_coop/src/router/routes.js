@@ -11,7 +11,7 @@ import Recommendation from '../components/Recommendation'
 import Periphery from '../pages/Found/Periphery'
 import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
-import  ShippingAddress from '../pages/Personal/ShippingAddress'
+import ShippingAddress from '../pages/Personal/ShippingAddress'
 import MyCustomerService from '../pages/Personal/MyCustomerService'
 import Rule from '../pages/Personal/Rule'
 import Search from '../pages/Home/Search'
@@ -19,7 +19,7 @@ import Details from '../components/Details'
 import PersonalInformation from '../pages/Personal/PersonalInformation'
 
 export default [
-  
+
   {
     path: '/home',
     component: Home
