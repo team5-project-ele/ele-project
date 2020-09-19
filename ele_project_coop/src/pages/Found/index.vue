@@ -1,7 +1,7 @@
 <template>
     <div class="goldCoinContainer">
     <!-- 头部区域 -->
-    <a class="header">
+    <a class="header" v-show="!uuid">
       <!--左侧金币 -->
       <div class="goldCoin" @click="gorecommend">
         <p class="title">金币商城</p>
@@ -55,9 +55,13 @@ export default {
   name: 'Found',
   data(){
     return {
+      uuid:null
     }
   },
   mounted (){
+    
+    this.uuid = localStorage.getItem('UUID_KEY') 
+    // console.log(this.uuid)
     // 调用action，拿到数据
     this.getFirstScreenDataAction()
     // console.log(this.firstScreenData)

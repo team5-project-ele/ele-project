@@ -10,11 +10,19 @@ export const reqFirstPageInfo = () => ajax.get(`/getFirstPage`)
 // 美食分类信息---艺飞
 export const reqCategoryStore = () => ajax.get(`/categoryStore`)
 
+// 获取订单详情的接口
+export const reqTradeInfo = () => ajax.get(`/order/auth/trade`)
+
+
+// 获取验证码的接口
+export const reqGetCaptcha = () => ajax.get(`/getcaptcha`)
 // 获取订单详情的接口---lzm
 export const reqOrderList = () => ajax.get(`/orderlist`)
 // 获取订单商品的详情---lzm
 export const reqOrderInfo = (navId) => ajax.post(`/orderinfoList/${navId}`)
 
+//获取个人中心下的金币的接口
+export const reqGetGoldCoin = () => ajax.get(`/getgoldcoin`)
 // 商家列表信息---艺飞
 export const reqStoreList = () => ajax.get(`/storeList`)
 

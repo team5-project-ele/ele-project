@@ -19,14 +19,30 @@ let firstScreen = require('../datas/zhangrui/zhangrui_firstScreen/firstScreen.js
 let indexIsfirst = require('../datas/zhangrui/zhangrui_firstScreen/indexIsfirst.json')
 
 
-router.get('/test', (ctx, next) => {
-  ctx.body = 1
-})
+let goldcoin = require('../datas/zhangtao_Personal/goldcoin.json')
+
 
 // 获取首页数据 ---yifei
 router.get('/getFirstPage', (ctx, next) => {
   ctx.body = FirstPage
 })
+
+// 获取验证码---zhangtao
+router.get('/getcaptcha', (ctx,next) => {
+  let str = '1234567890'
+  let code = ''
+  for(let i = 0; i < 6; i++){
+    code += str[Math.floor(Math.random()*6)]
+  }
+  code = code>>>0
+  ctx.body = code
+})
+
+// 获取personal下的goldcoin
+router.get('/getgoldcoin', (ctx,next) => {
+  ctx.body = goldcoin
+})
+
 
 // 获取美食分类信息 ---yifei
 router.get('/categoryStore', (ctx, next) => {

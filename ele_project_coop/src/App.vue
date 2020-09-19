@@ -7,10 +7,12 @@
 
 <script>
 import FooterBar from './components/FooterBar'
+
+
 export default {
   name: 'App',
   components: {
-    FooterBar
+    FooterBar,
   }
 }
 </script>
