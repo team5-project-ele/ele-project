@@ -1,6 +1,6 @@
 // 推荐有奖页面
 <template>
-  <div class="recommendationContainer">
+  <div class="recommendationContainer" >
     <!-- 大图 -->
     <div class="recommendationImg">
       <img src="./image/yaoqing.png" alt="">
@@ -28,14 +28,14 @@
           <img src="./image/show.svg" alt="">
           <p>二维码</p>
         </li>
-        <li>
+        <li @click="goInvitation">
           <img src="./image/lianje.png" alt="">
           <p>复制链接</p>
         </li>
       </ul>
     </van-popup>
     <!-- 查看赚钱攻略 -->
-    <div class="strategy">
+    <div class="strategy" @click="goStrteg">
       <van-icon name="orders-o" />
       <p class="title">查看赚钱攻略 > </p>
     </div>
@@ -94,12 +94,32 @@
     },
     data(){
       return{
-        show:false
+        show:false,
+        uuid:null
+      }
+    },
+    mounted(){
+      let uuid = this.uuid = localStorage.getItem('UUID_KEY')
+      console.log(uuid)
+      if(!uuid){
+        this.$router.push({
+          path:'/login'
+        })
       }
     },
     methods:{
       immediately(){
         this.show = true;        
+      },
+      goInvitation(){
+        this.$router.push({
+          path:'/found/invitation'
+        })
+      },
+      goStrteg(){
+        this.$router.push({
+          path:'/found/strteg'
+        })
       }
     }
   }
