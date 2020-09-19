@@ -106,7 +106,6 @@ export default {
 .orderContainer
   padding-top 10px
   width 100%
-  height calc(100vh - 102px)
   background-color rgb(245, 245, 245)
   .orderList
     width 100%
