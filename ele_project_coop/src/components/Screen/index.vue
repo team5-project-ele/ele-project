@@ -29,7 +29,6 @@ export default {
     //  发送异步请求，获取筛选的信息数据
     async getScreen () {
       const result = await reqScreen()
-      console.log(result.data.outside.inside_sort_filter)
       this.value1 = result.data.outside.inside_sort_filter[0].value
       this.option1 = result.data.outside.inside_sort_filter
       this.sortFilter = result.data.outside.outside_sort_filter

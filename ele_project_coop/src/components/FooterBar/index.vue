@@ -5,7 +5,7 @@
          @click="toPage('/home')"
          :class="{active:$route.path === '/home'}">
       <i class="iconfont"
-         :class="$route.path==='/home'?'icon-changyonglogo40':'icon-changyonglogo401'"></i>
+         :class="$route.path==='/home'?'icon-elemo':'icon-SSS'"></i>
       <span>首页</span>
     </div>
     <div class="tabBar"
@@ -47,6 +47,7 @@ export default {
 <style lang="stylus">
 #footerContainer
   position fixed
+  z-index 999
   bottom 0
   left 0
   width 100%
