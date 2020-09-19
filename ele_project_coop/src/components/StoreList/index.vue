@@ -127,7 +127,6 @@ export default {
 
     // 跳转到详情页
     toOrderInfo (navId) {
-      console.log(navId)
       this.$router.push({ path: '/orderinfo', query:{listId:navId} })
     },
 

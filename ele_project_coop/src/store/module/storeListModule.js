@@ -5,6 +5,7 @@ import {reqStoreList} from '../../api/index'
 const state = {
   storeList:[] , // 商家列表数组数据
   historyList:[], // 历史搜索的数据
+  getAddress:'', // 地址数据
 }
 
 // 直接修改状态
@@ -26,6 +27,12 @@ const mutations = {
   // 清除历史状态数据
   clearHistory (state) {
     state.historyList = []
+  },
+
+  // 直接获取地址数据
+  getAddressMutation (state,item) {
+    state.getAddress = item
+    console.log(item)
   }
 }
 
@@ -35,7 +42,6 @@ const actions = {
   async getStoreListAction ({commit}) {
     const result =await reqStoreList()
     commit('getStoreListMutation',result.data.items)
-    console.log(result.data.items)
   },
 
   // 根据关键字筛选商家数组数据
@@ -57,6 +63,11 @@ const actions = {
   // 根据搜索关键字更改历史搜索数据
   changeHistoryListAction ({commit},value) {
     commit('addHistoryListMutation',value.msg)
+  },
+
+  // 获取地址
+  getAddressAction ({commit},value) {
+    commit('getAddressMutation',value.msg)
   }
 }
 
