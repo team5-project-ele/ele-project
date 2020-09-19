@@ -82,6 +82,7 @@
       <van-address-list
         :list="list"
         class="ship"
+        @select="topage"
       />
     </div>
   </div>
@@ -89,6 +90,7 @@
  
 </template>
 <script>
+import {mapState} from 'vuex'
 import {reqFirstPageInfo} from '../../api/index'
 import { Search ,Button ,Sticky ,Toast ,AddressList } from 'vant'
 import StoreList from '../../components/StoreList'
@@ -118,11 +120,15 @@ export default {
           isDefault: false,
         }
       ],
+      // getAdd:'', // 得到地址数据
     }
   },
   mounted () {
     this.getFirstPage()
     this.$store.dispatch('getStoreListAction')
+    // if (!this.getAdd) {
+    //   this.showLocation = true
+    // }
   },
   methods: {
     async getFirstPage () {
@@ -143,8 +149,17 @@ export default {
     // 点击跳转到首页
     topage () {
       this.showLocation = false
+      // const msg = '华北理工大学'
+      // this.$store.dispatch('getAddressAction',{msg})
+      // this.$store.commit('getAddressMutation')
+      // console.log(this)
     }
-  }
+  },
+  // computed: {
+  //   ...mapState({
+  //     getAdd:state=>state.storeListModule.getAddress
+  //   })
+  // }
 }
 </script>
 <style scoped lang='stylus' rel='stylesheet/stylus'>
@@ -249,7 +264,6 @@ export default {
       .recommedStore
         position relative
         width 100%
-        height 72px
         text-align center
         .store
           position relative

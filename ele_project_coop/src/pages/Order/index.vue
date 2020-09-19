@@ -39,12 +39,15 @@
     </template>
     <template v-else>
       <div class="logo-in">
-        <img src="./images/login-in.png"
-             alt="">
-        <h3>登录后查看外卖订单</h3>
-        <van-button @click="toLogin"
-                    class="logo-btn"
-                    type="primary">立即登录</van-button>
+        <div class="logo-outer">
+          <img src="./images/login-in.png"
+               alt="">
+          <h3>登录后查看外卖订单</h3>
+          <van-button @click="toLogin"
+                      class="logo-btn"
+                      type="primary">立即登录</van-button>
+        </div>
+
       </div>
     </template>
     <router-view></router-view>
@@ -62,12 +65,13 @@ export default {
   },
   data () {
     return {
-      userInfo: {}
+      userInfo: null
     }
   },
   mounted () {
     this.getOrderListAction()
-    // this.userInfo = null
+    this.userInfo = localStorage.getItem('PHONE') || null
+
   },
   methods: {
     ...mapActions({
@@ -86,7 +90,7 @@ export default {
     },
     // 跳转到登录页面
     toLogin () {
-
+      this.$router.push('/login')
     }
   },
   computed: {
@@ -102,6 +106,7 @@ export default {
 .orderContainer
   padding-top 10px
   width 100%
+  height calc(100vh - 102px)
   background-color rgb(245, 245, 245)
   .orderList
     width 100%
@@ -187,22 +192,25 @@ export default {
           padding 10px 20px
           font-size 24px
   .logo-in
-    width 450px
-    margin 150px auto
-    display flex
-    flex-direction column
-    justify-content space-between
-    align-items center
-    img
-      width 400px
-      height 400px
-      margin 20px 0
-    >h3
-      color #6A6A6A
-      margin 30px 0
-      font-size 30px
-    .logo-btn
-      font-size 26px
-      width 200px
-      height 60px
+    width 100%
+    height calc(100vh - 102px)
+    .logo-outer
+      width 100%
+      height 100%
+      display flex
+      flex-direction column
+      justify-content space-evenly
+      align-items center
+      >img
+        width 400px
+        height 400px
+        margin 20px 0
+      >h3
+        color #6A6A6A
+        margin 30px 0
+        font-size 30px
+      .logo-btn
+        font-size 26px
+        width 200px
+        height 60px
 </style> 

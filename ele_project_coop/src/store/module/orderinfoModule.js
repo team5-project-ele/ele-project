@@ -10,6 +10,9 @@ const mutations = {
   getOrderInfo (state, info) {
     state.orderinfo = info
   },
+  getBoughtListInfo (state, obj) {
+    state.boughtList = obj
+  },
   // 添加购物车
   async getBoughtList (state, { obj, flag, index }) {
     let info = state.boughtList.find(item => item.item_id === obj.item_id)
@@ -36,6 +39,13 @@ const mutations = {
         state.boughtList[index].count -= 1
       }
     }
+  },
+  // 清空购物车
+  deleteShopCart (state) {
+    state.boughtList = state.boughtList.forEach(item => {
+      item.count = 0
+    })
+    state.boughtList = []
   }
 }
 const actions = {
@@ -47,7 +57,12 @@ const actions = {
   }
 }
 const getters = {
-
+  // 获取所有的购物数量
+  getTotalCount (state) {
+    return state.boughtList.reduce((pre, item) => {
+      return pre + (item.count ? item.count : 0)
+    }, 0)
+  }
 }
 export default {
   state,
