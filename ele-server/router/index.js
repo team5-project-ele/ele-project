@@ -72,8 +72,10 @@ router.get('/orderlist', (ctx, next) => {
   ctx.body = orderLists
 })
 // 获取商品详情信息-----lzm
-router.get('/orderinfoList', (ctx, next) => {
-  ctx.body = batchShop
+router.post('/orderinfoList/:id', (ctx, next) => {
+  let { id } = ctx.params
+  let obj = batchShop.find(item => item.rst.id === id)
+  ctx.body = obj
 })
 
 module.exports = router;

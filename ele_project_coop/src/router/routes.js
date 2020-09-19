@@ -9,7 +9,6 @@ import Periphery from '../pages/Found/Periphery'
 import CategoryStore from '../pages/Home/CategoryStore'
 import OrderInfo from '../components/OrderInfo'
 import Search from '../pages/Home/Search'
-import RestaurantInfo from '../components/OrderInfo/RestaurantInfo'
 import Details from '../components/Details'
 
 export default [
@@ -67,12 +66,6 @@ export default [
   {
     path: '/orderinfo',
     component: OrderInfo,
-    children: [
-      {
-        path: '/orderinfo/restaurantinfo',
-        component: RestaurantInfo
-      }
-    ],
     meta: {
       isHideFooter: true
     }

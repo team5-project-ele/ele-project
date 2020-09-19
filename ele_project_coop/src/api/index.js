@@ -10,24 +10,24 @@ export const reqFirstPageInfo = () => ajax.get(`/getFirstPage`)
 // 美食分类信息---艺飞
 export const reqCategoryStore = () => ajax.get(`/categoryStore`)
 
-// 获取订单详情的接口
+// 获取订单详情的接口---lzm
 export const reqOrderList = () => ajax.get(`/orderlist`)
-// 获取订单商品的详情
-export const reqOrderItem = (id) => ajax.get(`/getorderitems?id=${id}`)
+// 获取订单商品的详情---lzm
+export const reqOrderInfo = (navId) => ajax.post(`/orderinfoList/${navId}`)
 
 // 商家列表信息---艺飞
-export const reqStoreList = ()=> ajax.get(`/storeList`)
+export const reqStoreList = () => ajax.get(`/storeList`)
 
 // 热门搜索数组数据---艺飞
-export const reqHotSearch = ()=> ajax.get(`/hotSearch`)
+export const reqHotSearch = () => ajax.get(`/hotSearch`)
 
 // 商家筛选---艺飞
-export const reqScreen = ()=> ajax.get(`/screen`)
+export const reqScreen = () => ajax.get(`/screen`)
 
 // 获取金币商城数据（公共组件） --张蕊
-export const reqOperatingList =() => ajax.get('/getOperating')
+export const reqOperatingList = () => ajax.get('/getOperating')
 export const reqGoldCoinMallList = () => ajax.get('/getGoldCoinMall')
 export const reqFirstScreen = () => ajax.get('/getfirstScreen')
-export const reqIndexIsfirst = () =>ajax.get('/getindexIsfirst')
+export const reqIndexIsfirst = () => ajax.get('/getindexIsfirst')
 
 
