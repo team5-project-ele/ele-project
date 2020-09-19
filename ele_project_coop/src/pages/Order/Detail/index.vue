@@ -23,7 +23,7 @@
                     class="but"
                     color="#2395ff"
                     plain
-                    @click="toOrderInfo">再来一单</van-button>
+                    @click="toOrderInfo(orderInfo.id)">再来一单</van-button>
       </div>
       <div class="list"
            v-if="orderInfo">
@@ -165,8 +165,8 @@ export default {
     }
   },
   methods: {
-    toOrderInfo () {
-      this.$router.push('/orderinfo')
+    toOrderInfo (navId) {
+      this.$router.push({ path: '/orderinfo', query: { listId: navId } })
     },
     toOrder () {
       this.$router.push('/order')
