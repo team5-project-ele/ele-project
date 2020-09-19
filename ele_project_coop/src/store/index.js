@@ -6,6 +6,7 @@ import goldCoinMallModule from '@/store/module/goldCoinMallModule'
 import firstScreenModule from '@/store/module/firstScreenModule'
 import xIsFirstModule from '@/store/module/xIsFirstModule'
 import orderinfoModule from '@/store/module/orderinfoModule'
+import storeListModule from '@/store/module/storeListModule'
 Vue.use(Vuex)
 const store = new Vuex.Store({
   modules: {
@@ -14,7 +15,8 @@ const store = new Vuex.Store({
     goldCoinMallModule,
     firstScreenModule,
     xIsFirstModule,
-    orderinfoModule
+    orderinfoModule,
+    storeListModule
   }
 })
 export default store
