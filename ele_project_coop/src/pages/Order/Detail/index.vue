@@ -8,7 +8,8 @@
         </div>
         <h2>订单详情</h2>
         <div class="icon-r">
-          <van-icon name="service-o" />
+          <van-icon name="service-o"
+                    @click="toService" />
         </div>
       </div>
     </van-sticky>
@@ -165,6 +166,7 @@ export default {
     }
   },
   methods: {
+    // 跳转到订单详情页
     toOrderInfo (navId) {
       this.$router.push({ path: '/orderinfo', query: { listId: navId } })
     },
@@ -176,6 +178,10 @@ export default {
     },
     closeShow () {
       this.show = false
+    },
+    // 跳转到客服页面
+    toService () {
+      this.$router.push('/personal/mycustomerservice')
     }
   }
 }
