@@ -7,6 +7,7 @@
         class="storeItem" 
         v-for="storeItem in storeList" 
         :key="storeItem.restaurant.id"
+        @click="toOrderInfo(storeItem.restaurant.id)"
       >
         <!-- 商家详情 -->
         <div class="storeDsec" >
@@ -60,7 +61,7 @@
   </div>
 </template>
 <script>
-import { Rate ,Tag} from 'vant'
+import { Rate ,Tag ,Empty } from 'vant'
 // import {reqStoreList} from '../../api/index'
 import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
@@ -76,6 +77,7 @@ export default {
   components: {
     [Rate.name]: Rate,
     [Tag.name]: Tag,
+    [Empty.name]: Empty,
   },
   computed: {
     ...mapState({
@@ -112,6 +114,12 @@ export default {
       this.storeList.sort(function (a,b) {
         return b.restaurant[val] - a.restaurant[val]
       })
+    },
+
+    // 跳转到详情页
+    toOrderInfo (navId) {
+      console.log(navId)
+      this.$router.push({ path: '/orderinfo', query:{listId:navId} })
     }
   }
 

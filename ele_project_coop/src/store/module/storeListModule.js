@@ -35,6 +35,7 @@ const actions = {
   async getStoreListAction ({commit}) {
     const result =await reqStoreList()
     commit('getStoreListMutation',result.data.items)
+    console.log(result.data.items)
   },
 
   // 根据关键字筛选商家数组数据
