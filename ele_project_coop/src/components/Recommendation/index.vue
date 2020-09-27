@@ -102,10 +102,9 @@
       let uuid = this.uuid = localStorage.getItem('UUID_KEY')
       if(!uuid){
         this.$router.push({
-          path:'/login'
+          path:'/login',
+          query:{preUrl:'/found/recommendation'}
         })
-      }else{
-
       }
     },
     methods:{
@@ -141,7 +140,7 @@
         height 100%
     .notice
       margin 35px auto 0
-      width 94%
+      width 100%
       height 110px
       line-height 35px
       background rgb(242,44,72)

@@ -141,7 +141,8 @@ export default [
   {
     path: '/login',
     component: Login,
-    name: 'login'
+    name: 'login',
+    
   },
   {
     path: '/orderinfo',

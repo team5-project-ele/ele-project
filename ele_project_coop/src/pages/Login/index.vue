@@ -48,6 +48,7 @@ export default {
     this.captcha = 0
   },
     methods: {
+
       handleLogin(){
         const {phone, code, captcha} = this
         let phoneReg = /^1(3|4|5|6|7|8|9)\d{9}/;
@@ -67,8 +68,10 @@ export default {
             Toast({message: '手机号不正确', position: 'bottom'})
           }else{ // 验证码是否匹配
             if(code>>>0 === captcha){
+              console.log(this.$route)
+              let {preUrl} = this.$route.query
               // 登录成功
-              this.$router.replace({path:`/personal`})
+              this.$router.replace( {path: preUrl ||`/personal`})
               localStorage.setItem('PHONE',phone)
               let uuid = getUUID()
               localStorage.setItem('UUID_KEY',uuid)
